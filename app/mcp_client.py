@@ -32,8 +32,13 @@ def call_mcp(mcp_id: str, tool: str, args: Dict[str, Any] = None, use_mock: bool
     if use_mock:
         return mock_mcp_call(mcp_id, tool, args)
     
-    # Try real MCP call
+    # Try real MCP call - use direct API for better reliability
     try:
+        # GitHub: use REST API (more reliable than Docker MCP)
+        if mcp_id == 'github':
+            return call_github_mcp(tool, args)
+        
+        # For other MCPs, try Docker MCP
         return call_mcp_docker(mcp_id, tool, args)
     except Exception as e:
         print(f"⚠️  Real MCP call failed: {e}. Falling back to mock.")
