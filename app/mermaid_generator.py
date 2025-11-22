@@ -13,7 +13,7 @@ def generate_workflow_diagram(mcps, workflow_execution=None):
     Returns:
         str: Mermaid diagram code
     """
-    mcp_ids = [m.get('mcp_id') for m in mcps[:3]]
+    mcp_ids = [m.get('mcp_id') for m in mcps[:9]]
     
     # Build mermaid code
     lines = ["graph TD"]

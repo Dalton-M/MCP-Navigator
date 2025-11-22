@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MCP Stack Composer - API Server
+MCPilot - API Server
 FastAPI service providing RESTful API and Swagger UI
 """
 import sys
@@ -29,7 +29,7 @@ from app.mermaid_generator import generate_workflow_diagram, generate_execution_
 
 # Initialize FastAPI
 app = FastAPI(
-    title="MCP Stack Composer API",
+    title="MCPilot API",
     description="Intelligent MCP orchestration service - from natural language to executable code",
     version="2.0.0",
     docs_url="/docs",  # Swagger UI
@@ -261,7 +261,7 @@ async def home(request: Request):
 async def api_root():
     """API service information"""
     return {
-        "service": "MCP Stack Composer",
+        "service": "MCPilot",
         "status": "running",
         "version": "2.0.0",
         "docs": "/docs",
@@ -355,25 +355,25 @@ async def compose_agent(request_obj: Request):
                 example_tools=m.get('example_tools', [])
             ))
         
-        # Step 3: Generate code
-        snippet_md = generate_snippet(description, matched[:3])
-        
+        # Step 3: Generate code (use top_k_val MCPs)
+        snippet_md = generate_snippet(description, matched[:top_k_val])
+
         # Extract environment variables
         all_env_vars = []
-        for m in matched[:3]:
+        for m in matched[:top_k_val]:
             all_env_vars.extend(m.get('env_vars', []))
         unique_env_vars = list(dict.fromkeys(all_env_vars))
-        
+
         # Step 4: Cost Estimation (NEW!)
-        mcp_ids = [m['mcp_id'] for m in matched[:3]]
+        mcp_ids = [m['mcp_id'] for m in matched[:top_k_val]]
         estimator = CostEstimator()
         cost_estimate = estimator.estimate_by_mcps(mcp_ids, daily_runs=1)
 
         # Step 5: Multi-MCP Workflow Execution (NEW!)
-        workflow_execution = await execute_multi_mcp_workflow(matched[:3], description)
+        workflow_execution = await execute_multi_mcp_workflow(matched[:top_k_val], description)
 
         # Step 6: Generate Mermaid Diagram (NEW!)
-        mermaid_diagram = generate_workflow_diagram(matched[:3], workflow_execution)
+        mermaid_diagram = generate_workflow_diagram(matched[:top_k_val], workflow_execution)
 
         # Step 7: Demo call (backward compatibility, only if workflow failed)
         demo_call = None
@@ -773,7 +773,7 @@ if __name__ == "__main__":
     Config.validate()
 
     print("=" * 70)
-    print("🚀 MCP Stack Composer API Server")
+    print("🚀 MCPilot API Server")
     print("=" * 70)
     print(f"\n✓ Server starting...")
     print(f"✓ Groq API: {'Configured' if Config.GROQ_API_KEY else 'Mock Mode'}")
