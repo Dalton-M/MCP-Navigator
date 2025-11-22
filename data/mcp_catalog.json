@@ -1,210 +1,3067 @@
 {
-  "github": {
-    "mcp_id": "github",
-    "display_name": "GitHub Official MCP",
-    "description": "Official GitHub MCP Server. Provides seamless integration with GitHub APIs, enabling advanced automation and interaction capabilities for managing repositories, issues, pull requests, and more.",
+  "jetbrains": {
+    "mcp_id": "jetbrains",
+    "display_name": "JetBrains MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
     "capabilities": [
-      "code_hosting.read_issues",
-      "code_hosting.read_repos",
-      "code_hosting.create_issue",
-      "code_hosting.manage_pr",
-      "code_hosting.search_code"
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
     ],
-    "env_vars": ["GITHUB_TOKEN"],
-    "docker_image": "mcp/github",
+    "env_vars": [],
+    "docker_image": "mcp/jetbrains",
     "example_tools": [
-      "list_issues",
-      "get_repo",
-      "create_issue",
-      "search_repositories",
-      "get_pull_request"
+      "create_new_file_with_text",
+      "execute_action_by_id",
+      "execute_terminal_command",
+      "find_commit_by_message",
+      "find_files_by_name_substring"
     ],
-    "docs_url": "https://hub.docker.com/mcp/server/github"
+    "docs_url": "https://hub.docker.com/mcp/server/jetbrains/overview"
   },
-  "brave-search": {
-    "mcp_id": "brave-search",
-    "display_name": "Brave Search MCP",
-    "description": "Search the Web for pages, images, news, videos, and more using the Brave Search API. Provides privacy-focused web search capabilities.",
+  "javadocs": {
+    "mcp_id": "javadocs",
+    "display_name": "Javadocs MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
     "capabilities": [
-      "web_search",
-      "web_discovery",
-      "search.images",
-      "search.news"
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers"
     ],
-    "env_vars": ["BRAVE_API_KEY"],
-    "docker_image": "mcp/brave",
+    "env_vars": [],
+    "docker_image": "mcp/javadocs",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/javadocs/overview"
+  },
+  "kafka-schema-reg-mcp": {
+    "mcp_id": "kafka-schema-reg-mcp",
+    "display_name": "Kafka Schema Registry MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "SCHEMA_REGISTRY_URL"
+    ],
+    "docker_image": "mcp/kafka-schema-reg-mcp",
     "example_tools": [
+      "check_compatibility",
+      "count_contexts",
+      "count_schema_versions",
+      "count_schemas",
+      "create_context"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/kafka-schema-reg-mcp/overview"
+  },
+  "kagisearch": {
+    "mcp_id": "kagisearch",
+    "display_name": "Kagi Search MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
       "search",
-      "search_images",
-      "search_news",
-      "get_webpage_summary"
+      "web_discovery",
+      "web_search"
     ],
-    "docs_url": "https://hub.docker.com/mcp/server/brave-search"
-  },
-  "stripe": {
-    "mcp_id": "stripe",
-    "display_name": "Stripe MCP",
-    "description": "Interact with Stripe services over the Stripe API. Handle payments, subscriptions, invoices, and customer management.",
-    "capabilities": [
-      "payment.create_invoice",
-      "payment.list_subscriptions",
-      "payment.process_payment",
-      "payment.manage_customers"
+    "env_vars": [
+      "KAGI_API_KEY",
+      "YOUR_API_KEY"
     ],
-    "env_vars": ["STRIPE_API_KEY"],
-    "docker_image": "mcp/stripe",
+    "docker_image": "mcp/kagisearch",
     "example_tools": [
-      "create_payment_intent",
-      "list_customers",
-      "create_subscription",
-      "list_invoices",
-      "create_coupon"
+      "kagi_search_fetch",
+      "kagi_summarizer",
+      "kagi_search_fetch",
+      "queries",
+      "array"
     ],
-    "docs_url": "https://hub.docker.com/mcp/server/stripe"
+    "docs_url": "https://hub.docker.com/mcp/server/kagisearch/overview"
+  },
+  "keboola-mcp": {
+    "mcp_id": "keboola-mcp",
+    "display_name": "Keboola MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "KBC_STORAGE_TOKEN"
+    ],
+    "docker_image": "mcp/keboola-mcp",
+    "example_tools": [
+      "add_config_row",
+      "create_config",
+      "create_flow",
+      "create_oauth_url",
+      "create_sql_transformation"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/keboola-mcp/overview"
+  },
+  "kubectl-mcp-server": {
+    "mcp_id": "kubectl-mcp-server",
+    "display_name": "Kubectl MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.orchestration",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/kubectl-mcp-server",
+    "example_tools": [
+      "check_pod_health",
+      "create_deployment",
+      "delete_resource",
+      "get_api_resources",
+      "get_cluster_roles"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/kubectl-mcp-server/overview"
+  },
+  "kong": {
+    "mcp_id": "kong",
+    "display_name": "Kong Konnect MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "KONNECT_ACCESS_TOKEN"
+    ],
+    "docker_image": "mcp/kong",
+    "example_tools": [
+      "check_control_plane_group_membership",
+      "get_consumer_requests",
+      "get_control_plane",
+      "list_consumers",
+      "list_control_plane_group_memberships"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/kong/overview"
+  },
+  "kubernetes": {
+    "mcp_id": "kubernetes",
+    "display_name": "Kubernetes MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.orchestration",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/kubernetes",
+    "example_tools": [
+      "cleanup",
+      "exec_in_pod",
+      "explain_resource",
+      "install_helm_chart",
+      "kubectl_apply"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/kubernetes/overview"
+  },
+  "lara": {
+    "mcp_id": "lara",
+    "display_name": "Lara Translate MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "LARA_ACCESS_KEY_SECRET",
+      "YOUR_LARA_ACCESS_KEY_SECRET"
+    ],
+    "docker_image": "mcp/lara",
+    "example_tools": [
+      "add_translation",
+      "check_import_status",
+      "create_memory",
+      "delete_memory",
+      "delete_translation"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/lara/overview"
+  },
+  "line": {
+    "mcp_id": "line",
+    "display_name": "LINE MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "CHANNEL_ACCESS_TOKEN"
+    ],
+    "docker_image": "mcp/line",
+    "example_tools": [
+      "broadcast_flex_message",
+      "broadcast_text_message",
+      "cancel_rich_menu_default",
+      "delete_rich_menu",
+      "get_message_quota"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/line/overview"
+  },
+  "llmtxt": {
+    "mcp_id": "llmtxt",
+    "display_name": "LLM Text MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/llmtxt",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/llmtxt/overview"
+  },
+  "linkedin-mcp-server": {
+    "mcp_id": "linkedin-mcp-server",
+    "display_name": "LinkedIn MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/linkedin-mcp-server",
+    "example_tools": [
+      "close_session",
+      "get_company_profile",
+      "get_job_details",
+      "get_person_profile",
+      "get_recommended_jobs"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/linkedin-mcp-server/overview"
+  },
+  "maestro-mcp-server": {
+    "mcp_id": "maestro-mcp-server",
+    "display_name": "Maestro MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [
+      "API_KEY_API_KEY"
+    ],
+    "docker_image": "mcp/maestro-mcp-server",
+    "example_tools": [
+      "get_address_activity",
+      "get_address_balance",
+      "get_address_balance_historical",
+      "get_address_inscriptions",
+      "get_address_inscription_activity"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/maestro-mcp-server/overview"
+  },
+  "manifold": {
+    "mcp_id": "manifold",
+    "display_name": "Manifold MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/manifold",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/manifold/overview"
+  },
+  "mapbox": {
+    "mcp_id": "mapbox",
+    "display_name": "Mapbox MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "MAPBOX_ACCESS_TOKEN",
+      "YOUR_API_KEY"
+    ],
+    "docker_image": "mcp/mapbox",
+    "example_tools": [
+      "category_list_tool",
+      "category_search_tool",
+      "directions_tool",
+      "isochrone_tool",
+      "matrix_tool"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/mapbox/overview"
+  },
+  "mapbox-devkit": {
+    "mcp_id": "mapbox-devkit",
+    "display_name": "Mapbox Developer MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "MAPBOX_ACCESS_TOKEN",
+      "YOUR_API_KEY"
+    ],
+    "docker_image": "mcp/mapbox-devkit",
+    "example_tools": [
+      "bounding_box_tool",
+      "coordinate_conversion_tool",
+      "country_bounding_box_tool",
+      "create_style_tool",
+      "create_token_tool"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/mapbox-devkit/overview"
+  },
+  "markdownify": {
+    "mcp_id": "markdownify",
+    "display_name": "Markdownify MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/markdownify",
+    "example_tools": [
+      "filepath",
+      "string",
+      "url",
+      "string",
+      "filepath"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/markdownify/overview"
+  },
+  "markitdown": {
+    "mcp_id": "markitdown",
+    "display_name": "Markitdown MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/markitdown",
+    "example_tools": [
+      "convert_to_markdown",
+      "convert_to_markdown",
+      "uri",
+      "string"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/markitdown/overview"
+  },
+  "maven-tools-mcp": {
+    "mcp_id": "maven-tools-mcp",
+    "display_name": "Maven Tools MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/maven-tools-mcp",
+    "example_tools": [
+      "analyze_dependency_age",
+      "analyze_project_health",
+      "analyze_release_patterns",
+      "check_multiple_dependencies",
+      "check_version_exists"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/maven-tools-mcp/overview"
+  },
+  "mcp-api-gateway": {
+    "mcp_id": "mcp-api-gateway",
+    "display_name": "API Gateway MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "_SWAGGER_URL"
+    ],
+    "docker_image": "mcp/mcp-api-gateway",
+    "example_tools": [
+      "execute_api",
+      "get_api_info",
+      "execute_api",
+      "api_name",
+      "string"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/mcp-api-gateway/overview"
+  },
+  "mcp-code-interpreter": {
+    "mcp_id": "mcp-code-interpreter",
+    "display_name": "Python Interpreter MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/mcp-code-interpreter",
+    "example_tools": [
+      "execute_code",
+      "execute_code",
+      "code",
+      "string",
+      "session_id"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/mcp-code-interpreter/overview"
+  },
+  "mcp-discord": {
+    "mcp_id": "mcp-discord",
+    "display_name": "Discord MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "DISCORD_TOKEN",
+      "YOUR_DISCORD_TOKEN"
+    ],
+    "docker_image": "mcp/mcp-discord",
+    "example_tools": [
+      "discord_add_multiple_reactions",
+      "discord_add_reaction",
+      "discord_create_forum_post",
+      "discord_create_text_channel",
+      "discord_create_webhook"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/mcp-discord/overview"
+  },
+  "mcp-hackernews": {
+    "mcp_id": "mcp-hackernews",
+    "display_name": "Hacker News MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/mcp-hackernews",
+    "example_tools": [
+      "get_stories",
+      "get_story_info",
+      "get_user_info",
+      "search_stories",
+      "get_stories"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/mcp-hackernews/overview"
+  },
+  "mcp-python-refactoring": {
+    "mcp_id": "mcp-python-refactoring",
+    "display_name": "Python Refactoring Assistant MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/mcp-python-refactoring",
+    "example_tools": [
+      "analyze_python_file",
+      "analyze_python_package",
+      "analyze_security_and_patterns",
+      "analyze_test_coverage",
+      "find_long_functions"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/mcp-python-refactoring/overview"
+  },
+  "mcp-reddit": {
+    "mcp_id": "mcp-reddit",
+    "display_name": "Reddit MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "REDDIT_CLIENT_SECRET"
+    ],
+    "docker_image": "mcp/mcp-reddit",
+    "example_tools": [
+      "fetchPosts",
+      "getComments",
+      "getSubredditInfo",
+      "postComment",
+      "postToSubreddit"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/mcp-reddit/overview"
+  },
+  "memory": {
+    "mcp_id": "memory",
+    "display_name": "Memory (Reference) MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/memory",
+    "example_tools": [
+      "add_observations",
+      "create_entities",
+      "create_relations",
+      "delete_entities",
+      "delete_observations"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/memory/overview"
+  },
+  "mercado-libre": {
+    "mcp_id": "mercado-libre",
+    "display_name": "Mercado Libre MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/mercado-libre",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/mercado-libre/overview"
+  },
+  "mercado-pago": {
+    "mcp_id": "mercado-pago",
+    "display_name": "Mercado Pago MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/mercado-pago",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/mercado-pago/overview"
+  },
+  "metabase": {
+    "mcp_id": "metabase",
+    "display_name": "Metabase MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "METABASE_API_KEY",
+      "METABASE_URL"
+    ],
+    "docker_image": "mcp/metabase",
+    "example_tools": [
+      "add_card_to_dashboard",
+      "create_card",
+      "create_collection",
+      "create_dashboard",
+      "create_database_connection"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/metabase/overview"
+  },
+  "minecraft-wiki": {
+    "mcp_id": "minecraft-wiki",
+    "display_name": "Minecraft Wiki MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "collaboration.documents",
+      "knowledge.management",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/minecraft-wiki",
+    "example_tools": [
+      "title",
+      "string",
+      "title",
+      "string",
+      "sectionIndex"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/minecraft-wiki/overview"
   },
   "mongodb": {
     "mcp_id": "mongodb",
-    "display_name": "MongoDB MCP",
-    "description": "A Model Context Protocol server to connect to MongoDB databases and MongoDB Atlas Clusters. Perform database operations through natural language.",
+    "display_name": "MongoDB MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
     "capabilities": [
+      "api.integration",
+      "database.aggregate",
+      "database.query",
       "database.read",
       "database.write",
-      "database.query",
-      "database.aggregate"
+      "search"
     ],
-    "env_vars": ["MONGODB_URI"],
+    "env_vars": [],
     "docker_image": "mcp/mongodb",
     "example_tools": [
-      "find_documents",
-      "insert_document",
-      "update_document",
       "aggregate",
-      "create_collection"
+      "connect",
+      "count",
+      "explain",
+      "export"
     ],
-    "docs_url": "https://hub.docker.com/mcp/server/mongodb"
+    "docs_url": "https://hub.docker.com/mcp/server/mongodb/overview"
+  },
+  "multiversx-mx": {
+    "mcp_id": "multiversx-mx",
+    "display_name": "MultiversX MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/multiversx-mx",
+    "example_tools": [
+      "initialQuantity",
+      "string",
+      "name",
+      "string",
+      "tokenIdentifier"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/multiversx-mx/overview"
+  },
+  "nasdaq-data-link": {
+    "mcp_id": "nasdaq-data-link",
+    "display_name": "Nasdaq Data Link MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "NASDAQ_DATA_LINK_API_KEY",
+      "YOUR_API_KEY"
+    ],
+    "docker_image": "mcp/nasdaq-data-link",
+    "example_tools": [
+      "export_dataset",
+      "get_dataset",
+      "get_dataset_metadata",
+      "list_databases",
+      "search_datasets"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/nasdaq-data-link/overview"
+  },
+  "needle": {
+    "mcp_id": "needle",
+    "display_name": "Needle Remote MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/needle",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/needle/overview"
+  },
+  "needle-mcp": {
+    "mcp_id": "needle-mcp",
+    "display_name": "Needle MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "NEEDLE_API_KEY"
+    ],
+    "docker_image": "mcp/needle-mcp",
+    "example_tools": [
+      "needle_add_file",
+      "needle_create_collection",
+      "needle_get_collection_details",
+      "needle_get_collection_stats",
+      "needle_list_collections"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/needle-mcp/overview"
+  },
+  "neo4j-cloud-aura-api": {
+    "mcp_id": "neo4j-cloud-aura-api",
+    "display_name": "Neo4j Cloud Aura Api MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "database.query",
+      "database.read",
+      "database.write",
+      "graph.operations",
+      "search"
+    ],
+    "env_vars": [
+      "J_AURA_CLIENT_SECRET"
+    ],
+    "docker_image": "mcp/neo4j-cloud-aura-api",
+    "example_tools": [
+      "create_instance",
+      "delete_instance",
+      "get_instance_by_name",
+      "get_instance_details",
+      "get_tenant_details"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/neo4j-cloud-aura-api/overview"
+  },
+  "neo4j-cypher": {
+    "mcp_id": "neo4j-cypher",
+    "display_name": "Neo4j Cypher MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "database.query",
+      "database.read",
+      "database.write",
+      "graph.operations",
+      "search"
+    ],
+    "env_vars": [
+      "J_RESPONSE_TOKEN",
+      "J_URL"
+    ],
+    "docker_image": "mcp/neo4j-cypher",
+    "example_tools": [
+      "sample_size",
+      "sample_size",
+      "sample_size",
+      "integer",
+      "query"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/neo4j-cypher/overview"
+  },
+  "neo4j-data-modeling": {
+    "mcp_id": "neo4j-data-modeling",
+    "display_name": "Neo4j Data Modeling MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "database.query",
+      "database.read",
+      "database.write",
+      "graph.operations",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/neo4j-data-modeling",
+    "example_tools": [
+      "export_to_arrows_json",
+      "export_to_owl_turtle",
+      "get_constraints_cypher_queries",
+      "get_example_data_model",
+      "get_mermaid_config_str"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/neo4j-data-modeling/overview"
+  },
+  "neo4j-memory": {
+    "mcp_id": "neo4j-memory",
+    "display_name": "Neo4j Memory MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "database.query",
+      "database.read",
+      "database.write",
+      "graph.operations",
+      "search"
+    ],
+    "env_vars": [
+      "J_URL"
+    ],
+    "docker_image": "mcp/neo4j-memory",
+    "example_tools": [
+      "add_observations",
+      "create_entities",
+      "create_relations",
+      "delete_entities",
+      "delete_observations"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/neo4j-memory/overview"
+  },
+  "neon": {
+    "mcp_id": "neon",
+    "display_name": "Neon MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "NEON_API_KEY",
+      "YOUR_API_KEY",
+      "STACK_SECRET"
+    ],
+    "docker_image": "mcp/neon",
+    "example_tools": [
+      "__node_version",
+      "complete_database_migration",
+      "complete_query_tuning",
+      "create_branch",
+      "create_project"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/neon/overview"
+  },
+  "next-devtools-mcp": {
+    "mcp_id": "next-devtools-mcp",
+    "display_name": "Next.js DevTools MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/next-devtools-mcp",
+    "example_tools": [
+      "browser_eval",
+      "enable_cache_components",
+      "nextjs_docs",
+      "nextjs_runtime",
+      "browser_eval"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/next-devtools-mcp/overview"
+  },
+  "node-code-sandbox": {
+    "mcp_id": "node-code-sandbox",
+    "display_name": "Node.js Sandbox MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/node-code-sandbox",
+    "example_tools": [
+      "get_dependency_types",
+      "run_js",
+      "run_js_ephemeral",
+      "sandbox_exec",
+      "sandbox_initialize"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/node-code-sandbox/overview"
   },
   "notion": {
     "mcp_id": "notion",
-    "display_name": "Notion Official MCP",
-    "description": "Official Notion MCP Server. Manage your Notion workspace, create pages, databases, and collaborate on documents.",
+    "display_name": "Notion MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
     "capabilities": [
+      "api.integration",
+      "database.query",
+      "database.read",
+      "database.write",
+      "productivity.database",
       "productivity.notes",
       "productivity.workspace",
-      "productivity.database",
-      "collaboration.documents"
+      "search"
     ],
-    "env_vars": ["NOTION_API_KEY"],
+    "env_vars": [
+      "INTERNAL_INTEGRATION_TOKEN"
+    ],
     "docker_image": "mcp/notion",
     "example_tools": [
-      "create_page",
-      "search_pages",
-      "create_database",
-      "query_database",
-      "update_page"
+      "parent",
+      "object",
+      "rich_text",
+      "array",
+      "parent"
     ],
-    "docs_url": "https://hub.docker.com/mcp/server/notion"
+    "docs_url": "https://hub.docker.com/mcp/server/notion/overview"
   },
-  "elasticsearch": {
-    "mcp_id": "elasticsearch",
-    "display_name": "Elasticsearch MCP",
-    "description": "Interact with your Elasticsearch indices through natural language conversations. Perform full-text search, aggregations, and index management.",
+  "novita": {
+    "mcp_id": "novita",
+    "display_name": "Novita MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
     "capabilities": [
-      "search.full_text",
-      "database.query",
-      "search.analytics",
-      "database.index_management"
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
     ],
-    "env_vars": ["ELASTICSEARCH_URL", "ELASTICSEARCH_API_KEY"],
-    "docker_image": "mcp/elasticsearch",
+    "env_vars": [
+      "NOVITA_API_KEY"
+    ],
+    "docker_image": "mcp/novita",
     "example_tools": [
-      "search",
-      "aggregate",
-      "create_index",
-      "bulk_insert",
-      "get_cluster_health"
+      "name",
+      "string",
+      "password",
+      "string",
+      "username"
     ],
-    "docs_url": "https://hub.docker.com/mcp/server/elasticsearch"
+    "docs_url": "https://hub.docker.com/mcp/server/novita/overview"
+  },
+  "npm-sentinel": {
+    "mcp_id": "npm-sentinel",
+    "display_name": "NPM Sentinel MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/npm-sentinel",
+    "example_tools": [
+      "npmAlternatives",
+      "npmChangelogAnalysis",
+      "npmCompare",
+      "npmDeprecated",
+      "npmDeps"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/npm-sentinel/overview"
+  },
+  "obsidian": {
+    "mcp_id": "obsidian",
+    "display_name": "Obsidian MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "productivity.notes",
+      "search"
+    ],
+    "env_vars": [
+      "OBSIDIAN_API_KEY",
+      "YOUR_OBSIDIAN_API_KEY"
+    ],
+    "docker_image": "mcp/obsidian",
+    "example_tools": [
+      "obsidian_append_content",
+      "obsidian_batch_get_file_contents",
+      "obsidian_complex_search",
+      "obsidian_delete_file",
+      "obsidian_get_file_contents"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/obsidian/overview"
+  },
+  "okta-mcp-fctr": {
+    "mcp_id": "okta-mcp-fctr",
+    "display_name": "Okta MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "OKTA_API_TOKEN"
+    ],
+    "docker_image": "mcp/okta-mcp-fctr",
+    "example_tools": [
+      "analyze_login_risk",
+      "analyze_user_app_access",
+      "get_current_time",
+      "get_okta_application",
+      "get_okta_event_logs"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/okta-mcp-fctr/overview"
+  },
+  "omi": {
+    "mcp_id": "omi",
+    "display_name": "Omi MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "OMI_API_KEY"
+    ],
+    "docker_image": "mcp/omi",
+    "example_tools": [
+      "create_memory",
+      "delete_memory",
+      "edit_memory",
+      "get_conversation_by_id",
+      "get_conversations"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/omi/overview"
+  },
+  "onlyoffice-docspace": {
+    "mcp_id": "onlyoffice-docspace",
+    "display_name": "ONLYOFFICE DocSpace MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "DOCSPACE_AUTH_TOKEN",
+      "DOCSPACE_API_KEY",
+      "DOCSPACE_BASE_URL"
+    ],
+    "docker_image": "mcp/onlyoffice-docspace",
+    "example_tools": [
+      "archive_room",
+      "copy_batch_items",
+      "create_folder",
+      "create_room",
+      "delete_file"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/onlyoffice-docspace/overview"
+  },
+  "openapi": {
+    "mcp_id": "openapi",
+    "display_name": "OpenAPI Toolkit MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/openapi",
+    "example_tools": [
+      "create_csharp_snippet",
+      "generate_curl_command",
+      "get_known_responses",
+      "get_list_of_operations",
+      "validate_document"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/openapi/overview"
+  },
+  "openapi-schema": {
+    "mcp_id": "openapi-schema",
+    "display_name": "OpenAPI Schema MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/openapi-schema",
+    "example_tools": [
+      "name",
+      "string",
+      "openapiSchemaPath",
+      "string",
+      "type"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/openapi-schema/overview"
+  },
+  "openbnb-airbnb": {
+    "mcp_id": "openbnb-airbnb",
+    "display_name": "Airbnb Search MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/openbnb-airbnb",
+    "example_tools": [
+      "airbnb_listing_details",
+      "airbnb_search",
+      "airbnb_listing_details",
+      "id",
+      "string"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/openbnb-airbnb/overview"
+  },
+  "openmesh": {
+    "mcp_id": "openmesh",
+    "display_name": "OpenMesh MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/openmesh",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/openmesh/overview"
+  },
+  "openweather": {
+    "mcp_id": "openweather",
+    "display_name": "Openweather MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "OWM_API_KEY"
+    ],
+    "docker_image": "mcp/openweather",
+    "example_tools": [
+      "weather",
+      "weather",
+      "city",
+      "string",
+      "lang"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/openweather/overview"
+  },
+  "openzeppelin-cairo": {
+    "mcp_id": "openzeppelin-cairo",
+    "display_name": "OpenZeppelin Cairo Contracts MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/openzeppelin-cairo",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/openzeppelin-cairo/overview"
+  },
+  "openzeppelin-solidity": {
+    "mcp_id": "openzeppelin-solidity",
+    "display_name": "OpenZeppelin Solidity Contracts MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/openzeppelin-solidity",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/openzeppelin-solidity/overview"
+  },
+  "openzeppelin-stellar": {
+    "mcp_id": "openzeppelin-stellar",
+    "display_name": "OpenZeppelin Stellar Contracts MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/openzeppelin-stellar",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/openzeppelin-stellar/overview"
+  },
+  "openzeppelin-stylus": {
+    "mcp_id": "openzeppelin-stylus",
+    "display_name": "OpenZeppelin Stylus Contracts MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/openzeppelin-stylus",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/openzeppelin-stylus/overview"
+  },
+  "opik": {
+    "mcp_id": "opik",
+    "display_name": "Opik MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "OPIK_API_KEY",
+      "OPIK_API_BASE_URL"
+    ],
+    "docker_image": "mcp/opik",
+    "example_tools": [
+      "scores",
+      "array",
+      "traceId",
+      "string",
+      "workspaceName"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/opik/overview"
+  },
+  "opine-mcp-server": {
+    "mcp_id": "opine-mcp-server",
+    "display_name": "Opine MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "OPINE_API_KEY"
+    ],
+    "docker_image": "mcp/opine-mcp-server",
+    "example_tools": [
+      "get_deal",
+      "list_deals",
+      "list_evaluations",
+      "list_tickets",
+      "get_deal"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/opine-mcp-server/overview"
+  },
+  "oracle": {
+    "mcp_id": "oracle",
+    "display_name": "Oracle Database MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/oracle",
+    "example_tools": [
+      "describe_table",
+      "execute_query",
+      "get_table_constraints",
+      "get_table_indexes",
+      "list_schemas"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/oracle/overview"
+  },
+  "osp_marketing_tools": {
+    "mcp_id": "osp_marketing_tools",
+    "display_name": "OSP Marketing Tools MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/osp_marketing_tools",
+    "example_tools": [
+      "get_editing_codes",
+      "get_meta_guide",
+      "get_on_page_seo_guide",
+      "get_value_map_positioning_guide",
+      "get_writing_guide"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/osp_marketing_tools/overview"
+  },
+  "oxylabs": {
+    "mcp_id": "oxylabs",
+    "display_name": "Oxylabs MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/oxylabs",
+    "example_tools": [
+      "amazon_product_scraper",
+      "amazon_search_scraper",
+      "google_search_scraper",
+      "universal_scraper",
+      "amazon_product_scraper"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/oxylabs/overview"
+  },
+  "paper-search": {
+    "mcp_id": "paper-search",
+    "display_name": "Paper Search MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "database.query",
+      "database.read",
+      "database.write",
+      "search",
+      "web_discovery",
+      "web_search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/paper-search",
+    "example_tools": [
+      "download_arxiv",
+      "download_biorxiv",
+      "download_crossref",
+      "download_iacr",
+      "download_medrxiv"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/paper-search/overview"
+  },
+  "perplexity-ask": {
+    "mcp_id": "perplexity-ask",
+    "display_name": "Perplexity MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "search",
+      "web_discovery",
+      "web_search"
+    ],
+    "env_vars": [
+      "PERPLEXITY_API_KEY",
+      "YOUR_PERPLEXITY_API_KEY"
+    ],
+    "docker_image": "mcp/perplexity-ask",
+    "example_tools": [
+      "perplexity_ask",
+      "perplexity_reason",
+      "perplexity_research",
+      "perplexity_ask",
+      "messages"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/perplexity-ask/overview"
+  },
+  "pia": {
+    "mcp_id": "pia",
+    "display_name": "Program Integrity Alliance MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "PIA_API_KEY"
+    ],
+    "docker_image": "mcp/pia",
+    "example_tools": [
+      "fetch",
+      "pia_search_content",
+      "pia_search_content_congress",
+      "pia_search_content_crs",
+      "pia_search_content_doj"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/pia/overview"
+  },
+  "pica": {
+    "mcp_id": "pica",
+    "display_name": "Pica MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "PICA_BASE_URL",
+      "PICA_SECRET"
+    ],
+    "docker_image": "mcp/pica",
+    "example_tools": [
+      "execute_pica_action",
+      "get_pica_action_knowledge",
+      "list_pica_integrations",
+      "search_pica_platform_actions",
+      "execute_pica_action"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/pica/overview"
+  },
+  "pinecone": {
+    "mcp_id": "pinecone",
+    "display_name": "Pinecone Assistant MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "PINECONE_API_KEY",
+      "YOUR_PINECONE_API_KEY"
+    ],
+    "docker_image": "mcp/pinecone",
+    "example_tools": [
+      "assistant_context",
+      "assistant_context",
+      "assistant_name",
+      "string",
+      "query"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/pinecone/overview"
   },
   "playwright": {
     "mcp_id": "playwright",
-    "display_name": "Playwright MCP",
-    "description": "Microsoft's Playwright MCP server for browser automation and end-to-end testing. Automate web interactions across Chrome, Firefox, and Safari.",
+    "display_name": "Playwright MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
     "capabilities": [
       "browser.automation",
+      "search",
       "testing.e2e",
-      "web.scraping",
-      "browser.screenshot"
+      "web.scraping"
     ],
     "env_vars": [],
     "docker_image": "mcp/playwright",
     "example_tools": [
-      "navigate",
-      "click",
-      "fill_form",
-      "screenshot",
-      "extract_text"
+      "browser_click",
+      "browser_close",
+      "browser_console_messages",
+      "browser_drag",
+      "browser_evaluate"
     ],
-    "docs_url": "https://hub.docker.com/mcp/server/playwright"
+    "docs_url": "https://hub.docker.com/mcp/server/playwright/overview"
   },
-  "perplexity": {
-    "mcp_id": "perplexity",
-    "display_name": "Perplexity MCP",
-    "description": "Connector for Perplexity API, to enable real-time, web-wide research with AI-powered search and summarization.",
+  "playwright-mcp-server": {
+    "mcp_id": "playwright-mcp-server",
+    "display_name": "ExecuteAutomation Playwright MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
     "capabilities": [
-      "web_search",
-      "research.academic",
-      "research.synthesis",
-      "web_discovery"
-    ],
-    "env_vars": ["PERPLEXITY_API_KEY"],
-    "docker_image": "mcp/perplexity",
-    "example_tools": [
+      "api.integration",
+      "browser.automation",
       "search",
-      "research_topic",
-      "summarize_sources",
-      "ask_question"
+      "testing.e2e",
+      "web.scraping"
     ],
-    "docs_url": "https://hub.docker.com/mcp/server/perplexity"
-  },
-  "grafana": {
-    "mcp_id": "grafana",
-    "display_name": "Grafana MCP",
-    "description": "MCP server for Grafana monitoring and observability platform. Create dashboards, manage alerts, and query metrics.",
-    "capabilities": [
-      "monitoring.metrics",
-      "monitoring.alerts",
-      "observability.dashboard",
-      "monitoring.logs"
-    ],
-    "env_vars": ["GRAFANA_URL", "GRAFANA_API_KEY"],
-    "docker_image": "mcp/grafana",
+    "env_vars": [],
+    "docker_image": "mcp/playwright-mcp-server",
     "example_tools": [
-      "create_dashboard",
-      "query_metrics",
-      "create_alert",
-      "search_logs",
-      "create_incident"
+      "clear_codegen_session",
+      "end_codegen_session",
+      "get_codegen_session",
+      "playwright_assert_response",
+      "playwright_click"
     ],
-    "docs_url": "https://hub.docker.com/mcp/server/grafana"
+    "docs_url": "https://hub.docker.com/mcp/server/playwright-mcp-server/overview"
+  },
+  "pluggedin-mcp-proxy": {
+    "mcp_id": "pluggedin-mcp-proxy",
+    "display_name": "Plugged.in Proxy MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "PLUGGEDIN_API_KEY",
+      "YOUR_PLUGGEDIN_API_KEY",
+      "PLUGGEDIN_API_BASE_URL"
+    ],
+    "docker_image": "mcp/pluggedin-mcp-proxy",
+    "example_tools": [
+      "pluggedin_ask_knowledge_base",
+      "pluggedin_delete_notification",
+      "pluggedin_discover_tools",
+      "pluggedin_list_notifications",
+      "pluggedin_mark_notification_done"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/pluggedin-mcp-proxy/overview"
+  },
+  "polar-signals": {
+    "mcp_id": "polar-signals",
+    "display_name": "Polar Signals MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/polar-signals",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/polar-signals/overview"
+  },
+  "pomodash": {
+    "mcp_id": "pomodash",
+    "display_name": "PomoDash MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "POMODASH_API_KEY",
+      "POMODASH_API_URL"
+    ],
+    "docker_image": "mcp/pomodash",
+    "example_tools": [
+      "create_category",
+      "create_note",
+      "create_note_for_project",
+      "create_note_for_task",
+      "create_task"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/pomodash/overview"
+  },
+  "postgres": {
+    "mcp_id": "postgres",
+    "display_name": "PostgreSQL read-only (Archived) MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "database.query",
+      "database.read",
+      "database.write",
+      "search"
+    ],
+    "env_vars": [
+      "POSTGRES_URL"
+    ],
+    "docker_image": "mcp/postgres",
+    "example_tools": [
+      "query",
+      "query",
+      "sql",
+      "string"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/postgres/overview"
+  },
+  "postman": {
+    "mcp_id": "postman",
+    "display_name": "Postman MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "POSTMAN_API_KEY"
+    ],
+    "docker_image": "mcp/postman",
+    "example_tools": [
+      "createCollection",
+      "createCollectionRequest",
+      "createCollectionResponse",
+      "createEnvironment",
+      "createMock"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/postman/overview"
+  },
+  "pref-editor": {
+    "mcp_id": "pref-editor",
+    "display_name": "Pref Editor MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/pref-editor",
+    "example_tools": [
+      "add_preference",
+      "change_preference",
+      "delete_preference",
+      "devices",
+      "list_apps"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/pref-editor/overview"
+  },
+  "prometheus": {
+    "mcp_id": "prometheus",
+    "display_name": "Prometheus MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "monitoring.alerts",
+      "monitoring.metrics",
+      "observability.dashboard"
+    ],
+    "env_vars": [
+      "PROMETHEUS_URL"
+    ],
+    "docker_image": "mcp/prometheus",
+    "example_tools": [
+      "execute_query",
+      "execute_range_query",
+      "get_metric_metadata",
+      "get_targets",
+      "health_check"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/prometheus/overview"
+  },
+  "puppeteer": {
+    "mcp_id": "puppeteer",
+    "display_name": "Puppeteer (Archived) MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "browser.automation",
+      "search",
+      "testing.e2e",
+      "web.scraping"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/puppeteer",
+    "example_tools": [
+      "puppeteer_click",
+      "puppeteer_evaluate",
+      "puppeteer_fill",
+      "puppeteer_hover",
+      "puppeteer_navigate"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/puppeteer/overview"
+  },
+  "quantconnect": {
+    "mcp_id": "quantconnect",
+    "display_name": "QuantConnect MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "QUANTCONNECT_API_TOKEN"
+    ],
+    "docker_image": "mcp/quantconnect",
+    "example_tools": [
+      "abort_optimization",
+      "authorize_connection",
+      "broadcast_live_command",
+      "check_initialization_errors",
+      "check_syntax"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/quantconnect/overview"
+  },
+  "ramparts": {
+    "mcp_id": "ramparts",
+    "display_name": "Ramparts Security Scanner MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/ramparts",
+    "example_tools": [
+      "scan",
+      "scan",
+      "url",
+      "string",
+      "auth_headers"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/ramparts/overview"
+  },
+  "razorpay": {
+    "mcp_id": "razorpay",
+    "display_name": "Razorpay MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "payment.process_payment",
+      "search"
+    ],
+    "env_vars": [
+      "RAZORPAY_KEY_SECRET"
+    ],
+    "docker_image": "mcp/razorpay",
+    "example_tools": [
+      "capture_payment",
+      "close_qr_code",
+      "create_instant_settlement",
+      "create_order",
+      "create_payment_link"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/razorpay/overview"
+  },
+  "redis-cloud": {
+    "mcp_id": "redis-cloud",
+    "display_name": "Redis Cloud MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cache.operations",
+      "database.query",
+      "database.read",
+      "database.write",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/redis-cloud",
+    "example_tools": [
+      "name",
+      "string",
+      "subscriptionId",
+      "number",
+      "dataEvictionPolicy"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/redis-cloud/overview"
+  },
+  "redis": {
+    "mcp_id": "redis",
+    "display_name": "Redis MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cache.operations",
+      "database.query",
+      "database.read",
+      "database.write",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/redis",
+    "example_tools": [
+      "client_list",
+      "create_vector_index_hash",
+      "dbsize",
+      "delete",
+      "expire"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/redis/overview"
+  },
+  "ref": {
+    "mcp_id": "ref",
+    "display_name": "Ref - Up-To-Date Docs MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "REF_API_KEY"
+    ],
+    "docker_image": "mcp/ref",
+    "example_tools": [
+      "ref_read_url",
+      "ref_search_documentation",
+      "ref_read_url",
+      "url",
+      "string"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/ref/overview"
+  },
+  "remote-mcp": {
+    "mcp_id": "remote-mcp",
+    "display_name": "Remote MCP MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/remote-mcp",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/remote-mcp/overview"
+  },
+  "render": {
+    "mcp_id": "render",
+    "display_name": "Render MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "RENDER_API_KEY"
+    ],
+    "docker_image": "mcp/render",
+    "example_tools": [
+      "create_key_value",
+      "create_postgres",
+      "create_static_site",
+      "create_web_service",
+      "get_deploy"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/render/overview"
+  },
+  "resend": {
+    "mcp_id": "resend",
+    "display_name": "Resend MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "RESEND_API_KEY",
+      "YOUR_RESEND_API_KEY"
+    ],
+    "docker_image": "mcp/resend",
+    "example_tools": [
+      "subject",
+      "string",
+      "text",
+      "string",
+      "to"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/resend/overview"
+  },
+  "risken": {
+    "mcp_id": "risken",
+    "display_name": "RISKEN MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "RISKEN_ACCESS_TOKEN",
+      "RISKEN_URL"
+    ],
+    "docker_image": "mcp/risken",
+    "example_tools": [
+      "archive_finding",
+      "get_project",
+      "search_alert",
+      "search_finding",
+      "archive_finding"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/risken/overview"
+  },
+  "root": {
+    "mcp_id": "root",
+    "display_name": "Root.io Vulnerability Remediation MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [
+      "API_ACCESS_TOKEN"
+    ],
+    "docker_image": "mcp/root",
+    "example_tools": [
+      "create_registry_integration",
+      "get_image_remediation",
+      "get_remediation_continuity_summary",
+      "get_remediation_details_by_scan_id",
+      "get_remediation_status"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/root/overview"
+  },
+  "ros2": {
+    "mcp_id": "ros2",
+    "display_name": "WiseVision ROS2 MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/ros2",
+    "example_tools": [
+      "message_type",
+      "string",
+      "message_type",
+      "string",
+      "topic_name"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/ros2/overview"
+  },
+  "rube": {
+    "mcp_id": "rube",
+    "display_name": "Rube MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/rube",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/rube/overview"
+  },
+  "rust-mcp-filesystem": {
+    "mcp_id": "rust-mcp-filesystem",
+    "display_name": "Rust Filesystem MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/rust-mcp-filesystem",
+    "example_tools": [
+      "calculate_directory_size",
+      "root_path",
+      "create_directory",
+      "directory_tree",
+      "edit_file"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/rust-mcp-filesystem/overview"
+  },
+  "schemacrawler-ai": {
+    "mcp_id": "schemacrawler-ai",
+    "display_name": "SchemaCrawler AI MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "SCHCRWLR_JDBC_URL"
+    ],
+    "docker_image": "mcp/schemacrawler-ai",
+    "example_tools": [
+      "lint",
+      "list",
+      "array",
+      "string",
+      "array"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/schemacrawler-ai/overview"
+  },
+  "schogini-mcp-image-border": {
+    "mcp_id": "schogini-mcp-image-border",
+    "display_name": "Schogini Image Border MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/schogini-mcp-image-border",
+    "example_tools": [
+      "string",
+      "string",
+      "border_color",
+      "string",
+      "border_thickness"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/schogini-mcp-image-border/overview"
+  },
+  "scrapegraph": {
+    "mcp_id": "scrapegraph",
+    "display_name": "ScrapeGraph MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "SGAI_API_KEY",
+      "YOUR_SGAI_API_KEY"
+    ],
+    "docker_image": "mcp/scrapegraph",
+    "example_tools": [
+      "markdownify",
+      "searchscraper",
+      "smartcrawler_fetch_results",
+      "smartcrawler_initiate",
+      "smartscraper"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/scrapegraph/overview"
+  },
+  "scrapezy": {
+    "mcp_id": "scrapezy",
+    "display_name": "Scrapezy MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "SCRAPEZY_API_KEY"
+    ],
+    "docker_image": "mcp/scrapezy",
+    "example_tools": [
+      "prompt",
+      "string",
+      "url",
+      "string"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/scrapezy/overview"
+  },
+  "securenote-link-mcp-server": {
+    "mcp_id": "securenote-link-mcp-server",
+    "display_name": "Securenote.link MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/securenote-link-mcp-server",
+    "example_tools": [
+      "check_api_health",
+      "get_instructions",
+      "retrieve_and_decrypt_secret",
+      "send_secure_note",
+      "send_secure_note_return_api_url_and_key"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/securenote-link-mcp-server/overview"
+  },
+  "semgrep": {
+    "mcp_id": "semgrep",
+    "display_name": "Semgrep MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/semgrep",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/semgrep/overview"
+  },
+  "sentry": {
+    "mcp_id": "sentry",
+    "display_name": "Sentry (Archived) MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "SENTRY_AUTH_TOKEN",
+      "YOUR_SENTRY_TOKEN"
+    ],
+    "docker_image": "mcp/sentry",
+    "example_tools": [
+      "get_sentry_issue",
+      "get_sentry_issue",
+      "issue_id_or_url",
+      "string"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/sentry/overview"
+  },
+  "sequa": {
+    "mcp_id": "sequa",
+    "display_name": "Sequa.AI MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "MCP_SERVER_URL"
+    ],
+    "docker_image": "mcp/sequa",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/sequa/overview"
+  },
+  "sequentialthinking": {
+    "mcp_id": "sequentialthinking",
+    "display_name": "Sequential Thinking (Reference) MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/sequentialthinking",
+    "example_tools": [
+      "sequentialthinking",
+      "sequentialthinking",
+      "nextThoughtNeeded",
+      "boolean",
+      "thought"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/sequentialthinking/overview"
+  },
+  "short-io": {
+    "mcp_id": "short-io",
+    "display_name": "Short.io MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/short-io",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/short-io/overview"
+  },
+  "simplechecklist": {
+    "mcp_id": "simplechecklist",
+    "display_name": "SimpleCheckList MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/simplechecklist",
+    "example_tools": [
+      "list_projects",
+      "create_project",
+      "get_project",
+      "update_project",
+      "delete_project"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/simplechecklist/overview"
+  },
+  "singlestore": {
+    "mcp_id": "singlestore",
+    "display_name": "Singlestore MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "MCP_API_KEY"
+    ],
+    "docker_image": "mcp/singlestore",
+    "example_tools": [
+      "create_job_from_notebook",
+      "create_notebook_file",
+      "create_starter_workspace",
+      "delete_job",
+      "get_job"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/singlestore/overview"
   },
   "slack": {
     "mcp_id": "slack",
-    "display_name": "Slack Notifications MCP",
-    "description": "Send messages and notifications to Slack channels. Integrate Slack into your agent workflows for team communication.",
+    "display_name": "Slack (Archived) MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
     "capabilities": [
+      "api.integration",
+      "collaboration.messaging",
       "notify.slack",
       "notify.team_chat",
-      "collaboration.messaging"
+      "search"
     ],
-    "env_vars": ["SLACK_WEBHOOK_URL", "SLACK_BOT_TOKEN"],
+    "env_vars": [
+      "SLACK_BOT_TOKEN"
+    ],
     "docker_image": "mcp/slack",
     "example_tools": [
-      "send_message",
-      "post_to_channel",
-      "upload_file",
-      "create_thread"
+      "slack_add_reaction",
+      "slack_get_channel_history",
+      "slack_get_thread_replies",
+      "slack_get_user_profile",
+      "slack_get_users"
     ],
-    "docs_url": "https://api.slack.com/messaging/webhooks"
+    "docs_url": "https://hub.docker.com/mcp/server/slack/overview"
+  },
+  "smartbear": {
+    "mcp_id": "smartbear",
+    "display_name": "SmartBear MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "BUGSNAG_AUTH_TOKEN",
+      "REFLECT_API_TOKEN",
+      "PACT_BROKER_TOKEN",
+      "BUGSNAG_PROJECT_API_KEY",
+      "API_HUB_API_KEY",
+      "PACT_BROKER_BASE_URL"
+    ],
+    "docker_image": "mcp/smartbear",
+    "example_tools": [
+      "api_hub_create_api_from_template",
+      "api_hub_create_or_update_api",
+      "api_hub_create_portal",
+      "api_hub_create_portal_product",
+      "api_hub_create_table_of_contents"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/smartbear/overview"
+  },
+  "sonarqube": {
+    "mcp_id": "sonarqube",
+    "display_name": "SonarQube MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "SONARQUBE_TOKEN",
+      "YOUR_SONARQUBE_USER_TOKEN",
+      "SONARQUBE_URL"
+    ],
+    "docker_image": "mcp/sonarqube",
+    "example_tools": [
+      "analyze_code_snippet",
+      "analyze_file_list",
+      "toggle_automatic_analysis",
+      "search_sonar_issues_in_projects",
+      "change_sonar_issue_status"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/sonarqube/overview"
+  },
+  "sqlite-mcp-server": {
+    "mcp_id": "sqlite-mcp-server",
+    "display_name": "SQLite MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "database.query",
+      "database.read",
+      "database.write",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/sqlite-mcp-server",
+    "example_tools": [
+      "read_query",
+      "write_query",
+      "create_table",
+      "list_tables",
+      "describe_table"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/sqlite-mcp-server/overview"
+  },
+  "stackgen": {
+    "mcp_id": "stackgen",
+    "display_name": "StackGen MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "STACKGEN_TOKEN",
+      "STACKGEN_URL"
+    ],
+    "docker_image": "mcp/stackgen",
+    "example_tools": [
+      "destroy_deployment",
+      "provision_appstack",
+      "destroy_deployment",
+      "appstack_id",
+      "string"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/stackgen/overview"
+  },
+  "stackhawk": {
+    "mcp_id": "stackhawk",
+    "display_name": "StackHawk MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "STACKHAWK_API_KEY"
+    ],
+    "docker_image": "mcp/stackhawk",
+    "example_tools": [
+      "check_repository_attack_surface",
+      "check_repository_sensitive_data",
+      "create_stackhawk_config",
+      "generate_security_dashboard",
+      "get_app_findings_for_triage"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/stackhawk/overview"
+  },
+  "stripe": {
+    "mcp_id": "stripe",
+    "display_name": "Stripe MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "payment.create_invoice",
+      "payment.manage_customers",
+      "payment.process_payment",
+      "search"
+    ],
+    "env_vars": [
+      "STRIPE_SECRET",
+      "_STRIPE_SECRET"
+    ],
+    "docker_image": "mcp/stripe",
+    "example_tools": [
+      "cancel_subscription",
+      "create_coupon",
+      "create_customer",
+      "create_invoice",
+      "create_invoice_item"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/stripe/overview"
+  },
+  "supadata": {
+    "mcp_id": "supadata",
+    "display_name": "Supadata MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "SUPADATA_API_KEY"
+    ],
+    "docker_image": "mcp/supadata",
+    "example_tools": [
+      "supadata_check_crawl_status",
+      "supadata_check_transcript_status",
+      "supadata_crawl",
+      "supadata_map",
+      "supadata_scrape"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/supadata/overview"
+  },
+  "suzieq": {
+    "mcp_id": "suzieq",
+    "display_name": "Suzieq MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [
+      "SUZIEQ_API_KEY"
+    ],
+    "docker_image": "mcp/suzieq",
+    "example_tools": [
+      "run_suzieq_show",
+      "run_suzieq_summarize",
+      "run_suzieq_show",
+      "table",
+      "string"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/suzieq/overview"
+  },
+  "tavily": {
+    "mcp_id": "tavily",
+    "display_name": "Tavily MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "TAVILY_API_KEY"
+    ],
+    "docker_image": "mcp/tavily",
+    "example_tools": [
+      "url",
+      "string",
+      "allow_external",
+      "boolean",
+      "extract_depth"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/tavily/overview"
+  },
+  "task-orchestrator": {
+    "mcp_id": "task-orchestrator",
+    "display_name": "Task Orchestrator MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/task-orchestrator",
+    "example_tools": [
+      "add_section",
+      "add_template_section",
+      "apply_template",
+      "bulk_create_sections",
+      "bulk_delete_sections"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/task-orchestrator/overview"
+  },
+  "teamwork": {
+    "mcp_id": "teamwork",
+    "display_name": "Teamwork MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "TW_MCP_BEARER_TOKEN"
+    ],
+    "docker_image": "mcp/teamwork",
+    "example_tools": [
+      "name",
+      "string",
+      "description",
+      "string",
+      "details"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/teamwork/overview"
+  },
+  "telnyx": {
+    "mcp_id": "telnyx",
+    "display_name": "Telnyx MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/telnyx",
+    "example_tools": [],
+    "docs_url": "https://hub.docker.com/mcp/server/telnyx/overview"
+  },
+  "tembo": {
+    "mcp_id": "tembo",
+    "display_name": "Tembo MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "TEMBO_API_KEY"
+    ],
+    "docker_image": "mcp/tembo",
+    "example_tools": [
+      "ask_tembo",
+      "create_instance",
+      "delete_instance",
+      "get_all_apps",
+      "get_all_instances"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/tembo/overview"
+  },
+  "temporal": {
+    "mcp_id": "temporal",
+    "display_name": "Temporal MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/temporal",
+    "example_tools": [
+      "batch_cancel",
+      "batch_signal",
+      "batch_terminate",
+      "cancel_workflow",
+      "continue_as_new"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/temporal/overview"
+  },
+  "terraform": {
+    "mcp_id": "terraform",
+    "display_name": "Hashicorp Terraform MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/terraform",
+    "example_tools": [
+      "get_latest_module_version",
+      "get_latest_provider_version",
+      "get_module_details",
+      "get_policy_details",
+      "get_provider_capabilities"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/terraform/overview"
+  },
+  "testkube": {
+    "mcp_id": "testkube",
+    "display_name": "Testkube MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "TK_ACCESS_TOKEN",
+      "TK_CONTROL_PLANE_URL"
+    ],
+    "docker_image": "mcp/testkube",
+    "example_tools": [
+      "abort_workflow_execution",
+      "build_dashboard_url",
+      "create_workflow",
+      "fetch_execution_logs",
+      "get_execution_info"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/testkube/overview"
+  },
+  "text-to-graphql": {
+    "mcp_id": "text-to-graphql",
+    "display_name": "Text-to-GraphQL MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "OPENAI_API_KEY",
+      "GRAPHQL_API_KEY"
+    ],
+    "docker_image": "mcp/text-to-graphql",
+    "example_tools": [
+      "execute_graphql_query",
+      "generate_graphql_query",
+      "get_query_examples",
+      "get_query_history",
+      "validate_graphql_query"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/text-to-graphql/overview"
+  },
+  "thingsboard": {
+    "mcp_id": "thingsboard",
+    "display_name": "ThingsBoard MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "ACCESS_TOKEN",
+      "THINGSBOARD_URL"
+    ],
+    "docker_image": "mcp/thingsboard",
+    "example_tools": [
+      "findByFrom",
+      "findByFromWithRelationType",
+      "findByTo",
+      "findByToWithRelationType",
+      "findInfoByFrom"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/thingsboard/overview"
+  },
+  "tigris": {
+    "mcp_id": "tigris",
+    "display_name": "Tigris Data MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "AWS_ENDPOINT_URL",
+      "AWS_SECRET",
+      "AWS_ACCESS_KEY_ID",
+      "AWS_ENDPOINT_URL_S",
+      "AWS_SECRET_ACCESS_KEY"
+    ],
+    "docker_image": "mcp/tigris",
+    "example_tools": [
+      "tigris_create_bucket",
+      "tigris_delete_bucket",
+      "tigris_delete_object",
+      "tigris_get_object",
+      "tigris_get_signed_url_object"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/tigris/overview"
+  },
+  "time": {
+    "mcp_id": "time",
+    "display_name": "Time (Reference) MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/time",
+    "example_tools": [
+      "convert_time",
+      "get_current_time",
+      "convert_time",
+      "source_timezone",
+      "string"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/time/overview"
+  },
+  "triplewhale": {
+    "mcp_id": "triplewhale",
+    "display_name": "Triplewhale MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "TRIPLEWHALE_API_KEY"
+    ],
+    "docker_image": "mcp/triplewhale",
+    "example_tools": [
+      "moby",
+      "moby",
+      "isError",
+      "true",
+      "assistantConclusion"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/triplewhale/overview"
+  },
+  "unreal-engine-mcp-server": {
+    "mcp_id": "unreal-engine-mcp-server",
+    "display_name": "Unreal Engine MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/unreal-engine-mcp-server",
+    "example_tools": [
+      "animation_physics",
+      "build_environment",
+      "console_command",
+      "stat",
+      "control_actor"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/unreal-engine-mcp-server/overview"
+  },
+  "vectra-ai-rux-mcp-server": {
+    "mcp_id": "vectra-ai-rux-mcp-server",
+    "display_name": "Vectra AI RUX MCP Server MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "VECTRA_BASE_URL",
+      "VECTRA_CLIENT_SECRET"
+    ],
+    "docker_image": "mcp/vectra-ai-rux-mcp-server",
+    "example_tools": [
+      "get_detection_details",
+      "list_detections_with_details",
+      "get_detection_count",
+      "get_detection_pcap",
+      "list_entity_detections"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/vectra-ai-rux-mcp-server/overview"
+  },
+  "veyrax": {
+    "mcp_id": "veyrax",
+    "display_name": "VeyraX MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "VEYRAX_API_KEY"
+    ],
+    "docker_image": "mcp/veyrax",
+    "example_tools": [
+      "get_flow",
+      "get_tools",
+      "tool_call",
+      "get_flow",
+      "flowId"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/veyrax/overview"
+  },
+  "victorialogs": {
+    "mcp_id": "victorialogs",
+    "display_name": "VictoriaLogs MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "VL_INSTANCE_BEARER_TOKEN"
+    ],
+    "docker_image": "mcp/victorialogs",
+    "example_tools": [
+      "documentation",
+      "field_names",
+      "field_values",
+      "flags",
+      "query"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/victorialogs/overview"
+  },
+  "victoriametrics": {
+    "mcp_id": "victoriametrics",
+    "display_name": "VictoriaMetrics MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "database.query",
+      "database.read",
+      "database.write",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "VM_INSTANCE_BEARER_TOKEN"
+    ],
+    "docker_image": "mcp/victoriametrics",
+    "example_tools": [
+      "active_queries",
+      "alerts",
+      "documentation",
+      "downsampling_filters_debug",
+      "explain_query"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/victoriametrics/overview"
+  },
+  "victoriatraces": {
+    "mcp_id": "victoriatraces",
+    "display_name": "VictoriaTraces MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "VT_INSTANCE_BEARER_TOKEN"
+    ],
+    "docker_image": "mcp/victoriatraces",
+    "example_tools": [
+      "dependencies",
+      "documentation",
+      "service_operations",
+      "services",
+      "trace"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/victoriatraces/overview"
+  },
+  "vizro": {
+    "mcp_id": "vizro",
+    "display_name": "Vizro MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/vizro",
+    "example_tools": [
+      "get_model_json_schema",
+      "get_sample_data_info",
+      "get_vizro_chart_or_dashboard_plan",
+      "load_and_analyze_data",
+      "validate_chart_code"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/vizro/overview"
+  },
+  "wayfound": {
+    "mcp_id": "wayfound",
+    "display_name": "Wayfound MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "WAYFOUND_MCP_API_KEY",
+      "OPENAI_API_KEY"
+    ],
+    "docker_image": "mcp/wayfound",
+    "example_tools": [
+      "list_agents",
+      "get_agent_details",
+      "get_manager_analysis_for_agent",
+      "get_improvement_suggestions_for_agent",
+      "your_api_key_here"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/wayfound/overview"
+  },
+  "vuln-nist-mcp-server": {
+    "mcp_id": "vuln-nist-mcp-server",
+    "display_name": "Vuln NIST MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/vuln-nist-mcp-server",
+    "example_tools": [
+      "cve_change_history",
+      "cves_by_cpe",
+      "get_cve_by_id",
+      "get_temporal_context",
+      "kevs_between"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/vuln-nist-mcp-server/overview"
+  },
+  "webflow": {
+    "mcp_id": "webflow",
+    "display_name": "Webflow MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "WEBFLOW_TOKEN"
+    ],
+    "docker_image": "mcp/webflow",
+    "example_tools": [
+      "collection_fields_create_option",
+      "collection_fields_create_reference",
+      "collection_fields_create_static",
+      "collection_fields_update",
+      "collections_create"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/webflow/overview"
+  },
+  "wikipedia-mcp": {
+    "mcp_id": "wikipedia-mcp",
+    "display_name": "Wikipedia MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "knowledge.encyclopedia",
+      "research.reference",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/wikipedia-mcp",
+    "example_tools": [
+      "extract_key_facts",
+      "get_article",
+      "get_coordinates",
+      "get_links",
+      "get_related_topics"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/wikipedia-mcp/overview"
+  },
+  "wolfram-alpha": {
+    "mcp_id": "wolfram-alpha",
+    "display_name": "WolframAlpha MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "WOLFRAM_API_KEY"
+    ],
+    "docker_image": "mcp/wolfram-alpha",
+    "example_tools": [
+      "query",
+      "string"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/wolfram-alpha/overview"
+  },
+  "youtube_transcript": {
+    "mcp_id": "youtube_transcript",
+    "display_name": "YouTube Transcripts MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/youtube_transcript",
+    "example_tools": [
+      "get_timed_transcript",
+      "get_transcript",
+      "get_video_info",
+      "get_timed_transcript",
+      "url"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/youtube_transcript/overview"
+  },
+  "zen": {
+    "mcp_id": "zen",
+    "display_name": "Zen MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers",
+      "search"
+    ],
+    "env_vars": [
+      "OPENROUTER_API_KEY",
+      "GEMINI_API_KEY",
+      "OPENAI_API_KEY",
+      "XAI_API_KEY"
+    ],
+    "docker_image": "mcp/zen",
+    "example_tools": [
+      "analyze",
+      "apilookup",
+      "challenge",
+      "chat",
+      "clink"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/zen/overview"
+  },
+  "zerodha-kite": {
+    "mcp_id": "zerodha-kite",
+    "display_name": "Zerodha Kite Connect MCP Server | Docker MCP Catalog",
+    "description": "MCP server for Docker integration.",
+    "capabilities": [
+      "api.integration",
+      "cloud.infrastructure",
+      "devops.containers"
+    ],
+    "env_vars": [
+      "KITE_ACCESS_TOKEN",
+      "KITE_API_KEY",
+      "KITE_REDIRECT_URL",
+      "KITE_API_SECRET"
+    ],
+    "docker_image": "mcp/zerodha-kite",
+    "example_tools": [
+      "place_order",
+      "modify_order",
+      "cancel_order",
+      "get_positions",
+      "get_holdings"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/zerodha-kite/overview"
   }
 }
-

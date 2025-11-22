@@ -43,9 +43,9 @@ app.add_middleware(
 class AgentRequest(BaseModel):
     """用户输入的 Agent 需求"""
     description: str = Field(
-        ..., 
+        ...,
         description="自然语言描述的 Agent 需求",
-        example="I want an agent that reads GitHub issues, searches the web for solutions, and posts a daily summary"
+        json_schema_extra={"example": "I want an agent that reads GitHub issues, searches the web for solutions, and posts a daily summary"}
     )
     top_k: Optional[int] = Field(
         default=3,
@@ -311,12 +311,12 @@ async def generate_code(request: GenerateRequest):
 
 
 class MCPCallRequest(BaseModel):
-    mcp_id: str = Field(description="MCP 标识符", example="github")
-    tool: str = Field(description="工具名称", example="list_issues")
+    mcp_id: str = Field(description="MCP 标识符", json_schema_extra={"example": "github"})
+    tool: str = Field(description="工具名称", json_schema_extra={"example": "list_issues"})
     args: Dict = Field(
         default={},
         description="工具参数",
-        example={"owner": "microsoft", "repo": "vscode", "per_page": 5}
+        json_schema_extra={"example": {"owner": "microsoft", "repo": "vscode", "per_page": 5}}
     )
     use_mock: Optional[bool] = Field(
         default=None,
@@ -386,22 +386,26 @@ async def get_mcp_info(mcp_id: str):
 # ==================== 启动服务 ====================
 
 if __name__ == "__main__":
+    # Set UTF-8 encoding for console output
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
     # 验证配置
     Config.validate()
-    
+
     print("=" * 70)
-    print("🚀 MCP Stack Composer API Server")
+    print("MCP Stack Composer API Server")
     print("=" * 70)
-    print(f"\n✓ Server starting...")
-    print(f"✓ Groq API: {'Configured' if Config.GROQ_API_KEY else 'Mock Mode'}")
-    print(f"✓ GitHub Token: {'Configured' if Config.GITHUB_TOKEN else 'Not set'}")
-    print(f"\n📚 Documentation:")
-    print(f"   • Swagger UI: http://localhost:8000/docs")
-    print(f"   • ReDoc: http://localhost:8000/redoc")
-    print(f"\n🔗 Endpoints:")
-    print(f"   • Health: http://localhost:8000/health")
-    print(f"   • Compose: POST http://localhost:8000/api/v1/compose")
-    print(f"   • List MCPs: http://localhost:8000/api/v1/mcps")
+    print(f"\nServer starting...")
+    print(f"Groq API: {'Configured' if Config.GROQ_API_KEY else 'Mock Mode'}")
+    print(f"GitHub Token: {'Configured' if Config.GITHUB_TOKEN else 'Not set'}")
+    print(f"\nDocumentation:")
+    print(f"   - Swagger UI: http://localhost:8000/docs")
+    print(f"   - ReDoc: http://localhost:8000/redoc")
+    print(f"\nEndpoints:")
+    print(f"   - Health: http://localhost:8000/health")
+    print(f"   - Compose: POST http://localhost:8000/api/v1/compose")
+    print(f"   - List MCPs: http://localhost:8000/api/v1/mcps")
     print(f"\n" + "=" * 70 + "\n")
     
     uvicorn.run(
