@@ -303,7 +303,16 @@
         </div>
     </div>
 
+    <!-- Mermaid.js for diagram rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>
+        // Initialize Mermaid
+        mermaid.initialize({ 
+            startOnLoad: false,
+            theme: 'default',
+            securityLevel: 'loose'
+        });
+        
         async function composeAgent() {
             const apiUrl = document.getElementById('apiUrl').value.trim();
             const description = document.getElementById('description').value.trim();
@@ -385,6 +394,38 @@
             });
             html += '</div>';
             
+            // Cost Estimate
+            if (data.cost_estimate) {
+                html += '<div class="results">';
+                html += '<h2>💰 Cost Estimate</h2>';
+                html += `<p><strong>Per run:</strong> $${data.cost_estimate.per_run.toFixed(4)}</p>`;
+                html += `<p><strong>Monthly:</strong> $${data.cost_estimate.monthly_cost.toFixed(2)}</p>`;
+                html += `<p><strong>Yearly:</strong> $${data.cost_estimate.yearly_cost.toFixed(2)}</p>`;
+                html += '</div>';
+            }
+            
+            // Mermaid Workflow Diagram
+            if (data.mermaid_diagram) {
+                html += '<div class="results">';
+                html += '<h2>📊 Workflow Visualization</h2>';
+                html += '<div class="mermaid">' + data.mermaid_diagram + '</div>';
+                html += '</div>';
+            }
+            
+            // Workflow Execution Results
+            if (data.workflow_execution && data.workflow_execution.status === 'success') {
+                html += '<div class="results">';
+                html += '<h2>🚀 Execution Results</h2>';
+                html += `<p><strong>Status:</strong> ${data.workflow_execution.status}</p>`;
+                html += `<p><strong>Execution Time:</strong> ${data.workflow_execution.total_time}s</p>`;
+                html += `<p><strong>Steps:</strong> ${data.workflow_execution.steps_completed}/${data.workflow_execution.total_steps} completed</p>`;
+                
+                if (data.workflow_execution.results.analysis) {
+                    html += '<p><strong>Summary:</strong> ' + data.workflow_execution.results.analysis.summary + '</p>';
+                }
+                html += '</div>';
+            }
+            
             // Generated Code
             html += '<div class="results">';
             html += '<h2>💻 Generated Setup & Code</h2>';
@@ -401,6 +442,15 @@
             }
             
             resultsDiv.innerHTML = html;
+            
+            // Render Mermaid diagrams
+            if (data.mermaid_diagram) {
+                setTimeout(() => {
+                    mermaid.run({
+                        querySelector: '.mermaid'
+                    });
+                }, 100);
+            }
         }
         
         function displayError(message) {

@@ -12,18 +12,37 @@ MCP Stack Composer is a hackathon project that demonstrates the power of combini
 
 ## Features
 
+### Core Features
 1. **Natural Language → Capabilities**: Describe your agent in plain English, get structured capability tags via Groq
 2. **Smart MCP Matching**: Automatically match your needs to the right MCP servers from Docker Hub
 3. **Code Generation**: Get ready-to-use configuration and code snippets
 4. **Live Demo**: Real MCP calls to demonstrate actual integration
 
+### 🌟 Outstanding Features (NEW!)
+5. **Multi-MCP Workflow Execution**: True orchestration - multiple MCPs working together automatically
+6. **Pre-built Templates**: 5 ready-to-use workflow templates for common scenarios
+7. **Cost Estimation**: Transparent cost breakdown and optimization recommendations
+8. **Real-time Execution**: Not just recommendations - actual end-to-end automation
+
 ## Quick Start
+
+### Demo the Outstanding Features
+
+```bash
+# See all new features
+python showcase_outstanding_features.py
+
+# Run Multi-MCP workflow
+python multi_mcp_workflow.py
+```
 
 ### Prerequisites
 
 - Python 3.9+
 - Docker Desktop (optional, for running real MCP servers)
 - Groq API Key (free tier: https://console.groq.com/)
+- GitHub Token (optional, for real demos: https://github.com/settings/tokens)
+- Brave API Key (optional, for web search: https://brave.com/search/api/)
 
 ### Installation
 

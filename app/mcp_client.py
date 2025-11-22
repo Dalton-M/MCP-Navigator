@@ -38,6 +38,10 @@ def call_mcp(mcp_id: str, tool: str, args: Dict[str, Any] = None, use_mock: bool
         if mcp_id == 'github':
             return call_github_mcp(tool, args)
         
+        # Brave Search: use REST API
+        elif mcp_id in ['brave-search', 'brave']:
+            return call_brave_search(tool, args)
+        
         # For other MCPs, try Docker MCP
         return call_mcp_docker(mcp_id, tool, args)
     except Exception as e:
@@ -130,6 +134,89 @@ def call_mcp_docker(mcp_id: str, tool: str, args: Dict[str, Any]) -> Dict:
         raise RuntimeError(f"MCP call timed out after 30 seconds")
     except json.JSONDecodeError as e:
         raise RuntimeError(f"Failed to parse MCP response: {e}")
+
+
+def call_brave_search(tool: str, args: Dict[str, Any]) -> Dict:
+    """
+    Call Brave Search API directly with rate limit handling.
+    """
+    if not Config.BRAVE_API_KEY:
+        raise ValueError("BRAVE_API_KEY not configured")
+    
+    headers = {
+        "Accept": "application/json",
+        "X-Subscription-Token": Config.BRAVE_API_KEY
+    }
+    
+    if tool == "search":
+        query = args.get("query", "")
+        count = args.get("num_results", 10)
+        
+        url = "https://api.search.brave.com/res/v1/web/search"
+        params = {
+            "q": query,
+            "count": count
+        }
+        
+        try:
+            response = requests.get(url, headers=headers, params=params, timeout=10)
+            
+            # Handle rate limit errors
+            if response.status_code == 429:
+                print(f"⚠️  Brave Search rate limit exceeded, using fallback results")
+                # Return mock data with helpful message
+                return {
+                    "mcp_id": "brave-search",
+                    "tool": tool,
+                    "success": True,
+                    "note": "Rate limit exceeded, showing example results",
+                    "result": {
+                        "query": query,
+                        "web": {
+                            "results": [
+                                {
+                                    "title": f"Solution for: {query[:50]}",
+                                    "url": "https://stackoverflow.com/questions/example",
+                                    "description": "Rate limit exceeded. Brave Search allows 15 queries per minute in free tier. Consider upgrading or caching results.",
+                                    "note": "This is a fallback result due to rate limiting"
+                                }
+                            ]
+                        }
+                    }
+                }
+            
+            response.raise_for_status()
+            data = response.json()
+            
+            # Convert to unified format
+            results = []
+            for result in data.get("web", {}).get("results", []):
+                results.append({
+                    "title": result.get("title", ""),
+                    "url": result.get("url", ""),
+                    "description": result.get("description", "")
+                })
+            
+            return {
+                "mcp_id": "brave-search",
+                "tool": tool,
+                "success": True,
+                "result": {
+                    "query": query,
+                    "web": {
+                        "results": results
+                    }
+                }
+            }
+            
+        except requests.exceptions.HTTPError as e:
+            if e.response.status_code == 429:
+                # Already handled above, but catch any other 429s
+                raise ValueError("Brave Search rate limit exceeded. Please wait a moment and try again.")
+            raise
+            
+    else:
+        raise ValueError(f"Unsupported Brave Search tool: {tool}")
 
 
 def call_github_mcp(tool: str, args: Dict[str, Any]) -> Dict:

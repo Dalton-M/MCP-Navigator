@@ -47,6 +47,9 @@ def deploy_api_server():
         "app/matcher.py",
         "app/snippet_generator.py",
         "app/mcp_client.py",
+        "app/workflow_templates.py",  # NEW!
+        "app/cost_estimator.py",      # NEW!
+        "app/mermaid_generator.py",   # NEW!
         "app/__init__.py",
         "data/mcp_catalog.json",
     ]
@@ -84,7 +87,18 @@ print("\\n✅ All files uploaded")
     
     print("\n📤 Executing upload...")
     result = sandbox.run_code(upload_code, timeout=120)
-    print(result.text)
+    
+    # Check result
+    if result.logs and result.logs.stdout:
+        for line in result.logs.stdout:
+            print(line, end='')
+    if result.logs and result.logs.stderr:
+        print("Stderr:", result.logs.stderr)
+    if result.error:
+        print(f"❌ Upload error: {result.error}")
+        raise Exception(f"Upload failed: {result.error}")
+    
+    print("✅ Upload completed")
     
     # 安装依赖
     print("\n📚 Installing dependencies...")
@@ -106,7 +120,15 @@ else:
 """
     
     result = sandbox.run_code(install_code, timeout=180)
-    print(result.text)
+    
+    if result.logs and result.logs.stdout:
+        for line in result.logs.stdout:
+            print(line, end='')
+    if result.error:
+        print(f"❌ Install error: {result.error}")
+        raise Exception(f"Dependencies installation failed: {result.error}")
+    
+    print("✅ Dependencies installed")
     
     # 修改 api_server.py 监听所有接口
     print("\n🔧 Configuring API Server to listen on 0.0.0.0...")
@@ -133,7 +155,10 @@ print("✅ API Server configured for external access")
 """
     
     result = sandbox.run_code(config_code, timeout=10)
-    print(result.text)
+    if result.text:
+        print(result.text)
+    else:
+        print("API Server configuration executed")
     
     # 启动 API Server
     print("\n🚀 Starting API Server...")
@@ -170,11 +195,18 @@ except:
 """
     
     result = sandbox.run_code(start_code, timeout=30)
-    print(result.text)
+    
+    if result.logs and result.logs.stdout:
+        for line in result.logs.stdout:
+            print(line, end='')
+    if result.error:
+        print(f"❌ Start error: {result.error}")
+    else:
+        print("✅ API Server start command executed")
     
     # 等待服务完全启动
-    print("\n⏳ Waiting for API to start (15s)...")
-    time.sleep(15)
+    print("\n⏳ Waiting for API to start (20s)...")
+    time.sleep(20)
     
     # 测试 API
     print("🧪 Testing API...")
@@ -201,8 +233,40 @@ else:
         pass
 """
     
-    result = sandbox.run_code(test_code, timeout=60)
-    print(result.text)
+    result = sandbox.run_code(test_code, timeout=90)
+    
+    if result.logs and result.logs.stdout:
+        for line in result.logs.stdout:
+            print(line, end='')
+    if result.logs and result.logs.stderr:
+        for line in result.logs.stderr:
+            print(line, end='')
+    if result.error:
+        print(f"❌ Test error: {result.error}")
+    
+    # Also check if API server process is running
+    print("\n🔍 Checking if API server process is running...")
+    check_code = """
+import subprocess
+result = subprocess.run(['ps', 'aux'], capture_output=True, text=True)
+if 'api_server' in result.stdout:
+    print("✅ API server process found")
+    for line in result.stdout.split('\\n'):
+        if 'api_server' in line:
+            print(line)
+else:
+    print("❌ API server process not found")
+    print("\\nChecking api.log:")
+    try:
+        with open('api.log', 'r') as f:
+            print(f.read())
+    except:
+        print("No api.log file found")
+"""
+    result = sandbox.run_code(check_code, timeout=10)
+    if result.logs and result.logs.stdout:
+        for line in result.logs.stdout:
+            print(line, end='')
     
     # 获取所有可能的访问 URL
     print("\n" + "="*70)
