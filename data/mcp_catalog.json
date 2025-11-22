@@ -3063,5 +3063,29 @@
       "get_holdings"
     ],
     "docs_url": "https://hub.docker.com/mcp/server/zerodha-kite/overview"
+  },
+  "github": {
+    "mcp_id": "github",
+    "display_name": "GitHub Official MCP",
+    "description": "Official GitHub MCP Server. Provides seamless integration with GitHub APIs, enabling advanced automation and interaction capabilities for managing repositories, issues, pull requests, and more.",
+    "capabilities": [
+      "code_hosting.read_issues",
+      "code_hosting.read_repos",
+      "code_hosting.create_issue",
+      "code_hosting.manage_pr",
+      "code_hosting.search_code"
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN"
+    ],
+    "docker_image": "mcp/github",
+    "example_tools": [
+      "list_issues",
+      "get_repo",
+      "create_issue",
+      "search_repositories",
+      "get_pull_request"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/github"
   }
 }

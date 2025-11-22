@@ -186,31 +186,37 @@ async def compose_agent(request: AgentRequest):
         unique_env_vars = list(dict.fromkeys(all_env_vars))
         
         # Step 4: 演示调用（可选）
+        # For hackathon demo: only GitHub API key is configured
+        # Find GitHub MCP from matches if present
         demo_call = None
-        try:
-            # 尝试调用第一个 MCP
-            first_mcp = matched[0]['mcp_id']
-            if first_mcp == 'github':
+        github_mcp = None
+        for mcp in matched:
+            if 'github' in mcp['mcp_id'].lower():
+                github_mcp = mcp
+                break
+
+        if github_mcp:
+            try:
                 result = call_mcp('github', 'list_issues', {
                     'owner': 'microsoft',
                     'repo': 'vscode',
                     'per_page': 3
                 })
                 demo_call = MCPCallResult(
-                    mcp_id=result.get('mcp_id', first_mcp),
+                    mcp_id=result.get('mcp_id', 'github'),
                     tool=result.get('tool', 'list_issues'),
                     success=result.get('success', False),
                     result=result.get('result', None),
                     error=None
                 )
-        except Exception as e:
-            demo_call = MCPCallResult(
-                mcp_id=first_mcp if 'first_mcp' in locals() else 'unknown',
-                tool='demo',
-                success=False,
-                result=None,
-                error=str(e)
-            )
+            except Exception as e:
+                demo_call = MCPCallResult(
+                    mcp_id='github',
+                    tool='list_issues',
+                    success=False,
+                    result=None,
+                    error=str(e)
+                )
         
         # 构建响应
         return AgentResponse(
