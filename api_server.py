@@ -7,11 +7,16 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(__file__))
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request, Form
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 from typing import List, Dict, Optional, Any, Union
 import uvicorn
+from pathlib import Path
+import markdown
 
 from app.config import Config
 from app.planner import get_capabilities_from_description
@@ -36,6 +41,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Static files and templates setup
+BASE_DIR = Path(__file__).parent
+FRONTEND_DIR = BASE_DIR / "frontend"
+app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR / "static")), name="static")
+templates = Jinja2Templates(directory=str(FRONTEND_DIR / "templates"))
 
 
 # ==================== Pydantic Models ====================
@@ -102,9 +113,15 @@ class AgentResponse(BaseModel):
 
 # ==================== API Endpoints ====================
 
-@app.get("/")
-async def root():
-    """服务健康检查"""
+@app.get("/", response_class=HTMLResponse)
+async def home(request: Request):
+    """Serve the main frontend page"""
+    return templates.TemplateResponse("index.html", {"request": request})
+
+
+@app.get("/api")
+async def api_root():
+    """API服务信息"""
     return {
         "service": "MCP Stack Composer",
         "status": "running",
@@ -131,15 +148,35 @@ async def health_check():
     }
 
 
-@app.post("/api/v1/compose", response_model=AgentResponse)
-async def compose_agent(request: AgentRequest):
+@app.post("/api/v1/compose")
+async def compose_agent(
+    request_obj: Request,
+    agent_description: str = Form(None),
+    top_k: int = Form(3),
+    json_request: AgentRequest = None
+):
     """
     完整的 Agent 编排流程（一站式）
-    
+
     从用户的自然语言需求，到推荐的 MCP、生成的代码、以及演示调用
+    Supports both JSON API calls and HTMX form submissions
     """
     try:
-        description = request.description
+        # Check if this is an HTMX request
+        is_htmx = request_obj.headers.get("HX-Request") == "true"
+
+        # Handle form data from HTMX or JSON from API
+        if agent_description:
+            description = agent_description
+            top_k_val = top_k
+        else:
+            # Try to parse JSON body
+            try:
+                body = await request_obj.json()
+                description = body.get("description")
+                top_k_val = body.get("top_k", 3)
+            except:
+                raise HTTPException(status_code=400, detail="Invalid request format")
         
         # Step 1: 分析能力
         caps_result = get_capabilities_from_description(description)
@@ -153,7 +190,7 @@ async def compose_agent(request: AgentRequest):
         
         # Step 2: 匹配 MCP
         catalog = load_catalog()
-        matched = match_mcp(capabilities, catalog, top_k=request.top_k)
+        matched = match_mcp(capabilities, catalog, top_k=top_k_val)
         
         if not matched:
             raise HTTPException(
@@ -218,22 +255,64 @@ async def compose_agent(request: AgentRequest):
                     error=str(e)
                 )
         
-        # 构建响应
-        return AgentResponse(
-            request=description,
-            capabilities=CapabilityAnalysis(
-                capabilities=capabilities,
-                reasoning=caps_result.get("reasoning", ""),
-                confidence=caps_result.get("confidence", 0.0)
-            ),
-            recommended_mcps=mcp_recommendations,
-            code_snippet=CodeSnippet(
-                markdown=snippet_md,
-                env_vars=unique_env_vars
-            ),
-            demo_call=demo_call,
-            status="success"
+        # Parse markdown to HTML for better rendering
+        code_snippet_html = markdown.markdown(
+            snippet_md,
+            extensions=['fenced_code', 'tables', 'nl2br']
         )
+
+        # 构建响应
+        template_data = {
+            "user_description": description,
+            "capabilities": capabilities,
+            "reasoning": caps_result.get("reasoning", ""),
+            "confidence": caps_result.get("confidence", 0.0),
+            "matched_mcps": matched,
+            "code_snippet": code_snippet_html,
+            "code_snippet_raw": snippet_md,  # Keep raw for copy functionality
+            "env_vars": unique_env_vars,
+            "demo_call": None,
+            "status": "success"
+        }
+
+        # Add demo call if available
+        if demo_call:
+            template_data["demo_call"] = {
+                "mcp_id": demo_call.mcp_id,
+                "tool_name": demo_call.tool,
+                "status": "success" if demo_call.success else "error",
+                "params": {"owner": "microsoft", "repo": "vscode", "per_page": 3},
+                "result": demo_call.result if demo_call.success else demo_call.error
+            }
+
+        # Return HTML for HTMX requests, JSON for API requests
+        if is_htmx:
+            from fastapi.responses import HTMLResponse
+            html_content = templates.TemplateResponse(
+                "components/results.html",
+                {
+                    "request": request_obj,
+                    **template_data
+                }
+            )
+            return html_content
+        else:
+            # Return JSON for API calls
+            return AgentResponse(
+                request=description,
+                capabilities=CapabilityAnalysis(
+                    capabilities=capabilities,
+                    reasoning=caps_result.get("reasoning", ""),
+                    confidence=caps_result.get("confidence", 0.0)
+                ),
+                recommended_mcps=mcp_recommendations,
+                code_snippet=CodeSnippet(
+                    markdown=snippet_md,
+                    env_vars=unique_env_vars
+                ),
+                demo_call=demo_call,
+                status="success"
+            )
         
     except HTTPException:
         raise
