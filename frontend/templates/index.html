@@ -144,16 +144,14 @@
             </div>
 
             <!-- Precision Slider -->
-            <div class="pt-6 border-t border-zinc-800">
+            <div class="pt-6 border-t border-zinc-800" x-data="{ topK: 3 }">
                 <div class="flex items-center justify-between mb-3">
                     <label for="top-k" class="text-sm font-semibold text-zinc-300">
                         Recommendation Count
                     </label>
                     <span
                         class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm font-bold tabular-nums min-w-[2.5rem] text-center border border-indigo-500/30"
-                        x-data="{ value: 3 }"
-                        x-text="value"
-                        @input.window="if ($event.target.id === 'top-k') value = $event.target.value"
+                        x-text="topK"
                     >3</span>
                 </div>
                 <input
@@ -164,9 +162,7 @@
                     max="10"
                     value="3"
                     class="precision-slider w-full"
-                    x-data="{ value: 3 }"
-                    x-model="value"
-                    @input="value = $event.target.value"
+                    x-model="topK"
                 >
                 <div class="flex justify-between mt-3 text-xs text-zinc-500">
                     <span>Focused (1)</span>

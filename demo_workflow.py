@@ -101,10 +101,27 @@ def demo_intelligent_issue_manager():
             console.print(f"→ 分析: #{urgent_issue['number']} - {urgent_issue['title'][:50]}...")
             print()
             
-            # 模拟搜索（如果没有 Brave API key，显示意图）
+            # 真实搜索（如果有 Brave API key）
             if Config.BRAVE_API_KEY:
                 console.print("[cyan]→ 调用 Brave Search MCP...[/cyan]")
-                # 实际搜索代码
+                try:
+                    search_result = call_mcp('brave-search', 'search', {
+                        'query': f"{urgent_issue['title']} solution",
+                        'num_results': 3
+                    })
+                    
+                    if search_result.get('success'):
+                        results = search_result.get('result', {}).get('web', {}).get('results', [])
+                        console.print(f"[green]✓[/green] 找到 {len(results)} 个解决方案:\n")
+                        
+                        for i, result in enumerate(results[:3], 1):
+                            console.print(f"   {i}. {result['title']}")
+                            console.print(f"      {result['url']}")
+                            console.print(f"      {result['description'][:80]}...\n")
+                    else:
+                        console.print("[yellow]⚠️  搜索未返回结果[/yellow]")
+                except Exception as e:
+                    console.print(f"[yellow]⚠️  搜索失败: {e}[/yellow]")
             else:
                 console.print("[dim]→ (模拟) 搜索 Stack Overflow, GitHub discussions...[/dim]")
                 console.print("[dim]   找到 3 个相关解决方案[/dim]")

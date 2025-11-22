@@ -129,6 +129,67 @@
         </div>
     </div>
 
+    <!-- Cost Estimate Section (NEW!) -->
+    {% if cost_estimate %}
+    <div class="organic-card overflow-hidden">
+        <!-- Card Header -->
+        <div class="organic-card-header px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm border border-emerald-500/30">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-lg font-semibold text-white">Cost Estimate</h2>
+            </div>
+            <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded border border-emerald-500/30">
+                ${{ "%.2f"|format(cost_estimate['monthly_cost']) }}/month
+            </span>
+        </div>
+
+        <!-- Card Body -->
+        <div class="p-6">
+            <div class="grid md:grid-cols-3 gap-4">
+                <!-- Daily Cost -->
+                <div class="p-4 bg-zinc-900/50 rounded-lg border border-zinc-800">
+                    <h4 class="text-xs font-semibold text-zinc-500 mb-2 uppercase tracking-wide">Daily</h4>
+                    <p class="text-2xl font-bold text-emerald-400">${{ "%.4f"|format(cost_estimate['daily_cost']) }}</p>
+                </div>
+
+                <!-- Monthly Cost -->
+                <div class="p-4 bg-emerald-500/10 rounded-lg border border-emerald-500/30">
+                    <h4 class="text-xs font-semibold text-emerald-400 mb-2 uppercase tracking-wide">Monthly</h4>
+                    <p class="text-2xl font-bold text-emerald-300">${{ "%.2f"|format(cost_estimate['monthly_cost']) }}</p>
+                </div>
+
+                <!-- Per Run Cost -->
+                <div class="p-4 bg-zinc-900/50 rounded-lg border border-zinc-800">
+                    <h4 class="text-xs font-semibold text-zinc-500 mb-2 uppercase tracking-wide">Per Run</h4>
+                    <p class="text-2xl font-bold text-emerald-400">${{ "%.4f"|format(cost_estimate['per_run']) }}</p>
+                </div>
+            </div>
+
+            <!-- MCP Breakdown -->
+            {% if cost_estimate.get('breakdown') %}
+            <div class="mt-6">
+                <h4 class="text-sm font-semibold text-zinc-300 mb-3">Cost Breakdown by Service</h4>
+                <div class="space-y-2">
+                    {% for service_name, service_info in cost_estimate['breakdown'].items() %}
+                    <div class="p-3 bg-zinc-900/50 rounded-lg border border-zinc-800">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-mono text-sm font-semibold text-white">{{ service_name }}</span>
+                            <span class="text-sm font-bold text-emerald-400">${{ "%.4f"|format(service_info['cost']) }}</span>
+                        </div>
+                        <p class="text-xs text-zinc-500">{{ service_info.get('note', '') }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
     <!-- Step 3: Generated Code -->
     <div class="organic-card overflow-hidden">
         <!-- Card Header -->
@@ -176,6 +237,107 @@
             </div>
         </div>
     </div>
+
+    <!-- Mermaid Workflow Diagram (NEW!) -->
+    {% if mermaid_diagram %}
+    <div class="organic-card overflow-hidden">
+        <!-- Card Header -->
+        <div class="organic-card-header px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-sm border border-cyan-500/30">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-lg font-semibold text-white">Workflow Visualization</h2>
+            </div>
+            <span class="text-xs font-mono text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded border border-cyan-500/30">
+                Mermaid Diagram
+            </span>
+        </div>
+
+        <!-- Card Body -->
+        <div class="p-6">
+            <div class="bg-zinc-900/50 rounded-lg border border-white/5 p-8 overflow-x-auto">
+                <div class="flex justify-center items-center min-h-[400px]">
+                    <div class="mermaid">
+{{ mermaid_diagram }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Workflow Execution Results (NEW!) -->
+    {% if workflow_execution %}
+    <div class="organic-card overflow-hidden">
+        <!-- Card Header -->
+        <div class="organic-card-header px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded bg-orange-500/20 text-orange-400 flex items-center justify-center font-bold text-sm border border-orange-500/30">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-lg font-semibold text-white">Workflow Execution</h2>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-xs font-mono text-zinc-400 bg-black/30 px-3 py-1 rounded">
+                    {{ workflow_execution['steps_completed'] }}/{{ workflow_execution['total_steps'] }} steps
+                </span>
+                <span class="px-3 py-1 rounded text-xs font-semibold border {{ 'bg-green-500/20 text-green-300 border-green-500/30' if workflow_execution['status'] == 'success' else ('bg-yellow-500/20 text-yellow-300 border-yellow-500/30' if workflow_execution['status'] == 'partial' else 'bg-red-500/20 text-red-300 border-red-500/30') }}">
+                    {{ workflow_execution['status']|upper }}
+                </span>
+            </div>
+        </div>
+
+        <!-- Card Body -->
+        <div class="p-6">
+            <!-- Execution Summary -->
+            <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <div class="p-4 bg-zinc-900/50 rounded-lg border border-zinc-800">
+                    <h4 class="text-xs font-semibold text-zinc-500 mb-2 uppercase tracking-wide">Total Time</h4>
+                    <p class="text-2xl font-bold text-orange-400">{{ "%.2f"|format(workflow_execution['total_time']) }}s</p>
+                </div>
+                <div class="p-4 bg-zinc-900/50 rounded-lg border border-zinc-800">
+                    <h4 class="text-xs font-semibold text-zinc-500 mb-2 uppercase tracking-wide">Steps Completed</h4>
+                    <p class="text-2xl font-bold text-orange-400">{{ workflow_execution['steps_completed'] }}/{{ workflow_execution['total_steps'] }}</p>
+                </div>
+                <div class="p-4 bg-zinc-900/50 rounded-lg border border-zinc-800">
+                    <h4 class="text-xs font-semibold text-zinc-500 mb-2 uppercase tracking-wide">Status</h4>
+                    <p class="text-xl font-bold {{ 'text-green-400' if workflow_execution['status'] == 'success' else ('text-yellow-400' if workflow_execution['status'] == 'partial' else 'text-red-400') }}">
+                        {{ workflow_execution['status']|capitalize }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Workflow Results -->
+            {% if workflow_execution.get('results') %}
+            <div>
+                <h4 class="text-sm font-semibold text-zinc-300 mb-3">Execution Results</h4>
+                <div class="space-y-3">
+                    {% for step_name, step_result in workflow_execution['results'].items() %}
+                    <div class="bg-zinc-900/50 rounded-lg border border-zinc-800 overflow-hidden">
+                        <div class="px-4 py-2 bg-zinc-800/50 border-b border-zinc-700 flex items-center justify-between">
+                            <span class="font-mono text-sm text-white">{{ step_name }}</span>
+                            {% if step_result.get('error') %}
+                            <span class="text-xs text-red-400">Error</span>
+                            {% else %}
+                            <span class="text-xs text-green-400">Success</span>
+                            {% endif %}
+                        </div>
+                        <div class="p-4">
+                            <pre class="text-xs text-zinc-300 overflow-x-auto max-h-48"><code>{{ step_result|tojson(indent=2) }}</code></pre>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
 
     <!-- Step 4: Demo Results -->
     {% if demo_call %}

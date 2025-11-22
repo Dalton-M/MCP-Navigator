@@ -56,6 +56,48 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
 
+    <!-- Mermaid.js for Workflow Diagrams -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                // Backgrounds & Main Colors (Tailwind Zinc/Slate)
+                background: '#09090b',
+                primaryColor: '#27272a',
+                secondaryColor: '#27272a',
+                tertiaryColor: '#27272a',
+
+                // Borders & Lines (Indigo/Purple)
+                primaryBorderColor: '#6366f1',
+                secondaryBorderColor: '#a855f7',
+                lineColor: '#71717a',
+
+                // Text & Fonts
+                fontFamily: '"JetBrains Mono", "Fira Code", "Consolas", monospace',
+                fontSize: '14px',
+                primaryTextColor: '#f4f4f5',
+                textColor: '#f4f4f5',
+
+                // Shape Refinement
+                mainBkg: '#27272a',
+                nodeBorder: '#6366f1',
+                clusterBkg: '#18181b',
+                clusterBorder: '#52525b',
+                titleColor: '#f4f4f5',
+                edgeLabelBackground: '#09090b'
+            },
+            flowchart: {
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20
+            },
+            securityLevel: 'loose'
+        });
+        window.mermaid = mermaid;
+    </script>
+
     <!-- Custom Styles -->
     <style>
         /* Smooth scrolling */
@@ -210,6 +252,72 @@
             font-size: 0.875em;
         }
 
+        /* Mermaid Diagram Professional Styling */
+        /* 1. Target the Rectangles (Nodes) */
+        .mermaid .node rect,
+        .mermaid .node circle,
+        .mermaid .node polygon {
+            fill: rgba(39, 39, 42, 0.8) !important;
+            stroke: #6366f1 !important;
+            stroke-width: 1.5px !important;
+            rx: 6px !important;
+            ry: 6px !important;
+            filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.3));
+            transition: all 0.3s ease;
+        }
+
+        /* 2. Hover Effect for Interactivity */
+        .mermaid .node:hover rect,
+        .mermaid .node:hover circle,
+        .mermaid .node:hover polygon {
+            fill: rgba(49, 46, 129, 0.8) !important;
+            stroke: #a855f7 !important;
+            filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.6));
+            cursor: pointer;
+        }
+
+        /* 3. Style the Rhombus (Decision Nodes) */
+        .mermaid .node polygon {
+            stroke: #ec4899 !important;
+            filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.3));
+        }
+
+        .mermaid .node:hover polygon {
+            stroke: #f472b6 !important;
+            filter: drop-shadow(0 0 12px rgba(244, 114, 182, 0.6));
+        }
+
+        /* 4. The Lines (Edges) */
+        .mermaid .edgePath .path {
+            stroke: #71717a !important;
+            stroke-width: 2px !important;
+            opacity: 0.7;
+        }
+
+        /* 5. The Arrowheads */
+        .mermaid .marker {
+            fill: #71717a !important;
+            stroke: #71717a !important;
+        }
+
+        /* 6. Node Labels (Text) */
+        .mermaid .nodeLabel {
+            color: #f4f4f5 !important;
+            font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
+        }
+
+        /* 7. Edge Labels */
+        .mermaid .edgeLabel {
+            background-color: #09090b !important;
+            color: #a1a1aa !important;
+            font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace !important;
+            font-size: 12px !important;
+            padding: 2px 4px !important;
+            border-radius: 4px !important;
+        }
+
         .prose pre code {
             background-color: transparent;
             padding: 0;
@@ -311,11 +419,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
 
-    <!-- Auto-highlight code blocks after HTMX swaps -->
+    <!-- Auto-highlight code blocks and render diagrams after HTMX swaps -->
     <script>
         document.body.addEventListener('htmx:afterSwap', function(event) {
+            // Re-highlight code blocks
             if (typeof Prism !== 'undefined') {
                 Prism.highlightAll();
+            }
+
+            // Re-render Mermaid diagrams
+            if (typeof mermaid !== 'undefined') {
+                mermaid.run({
+                    querySelector: '.mermaid'
+                });
             }
         });
     </script>
