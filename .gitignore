@@ -25,7 +25,8 @@ wheels/
 
 # Environment variables
 .env
-.env.local
+.env.*
+*.env
 
 # IDE
 .vscode/
@@ -40,6 +41,10 @@ Thumbs.db
 
 # Logs
 *.log
+
+# E2B deployment files
+e2b_url.txt
+api_server.pid
 
 # Testing
 .pytest_cache/

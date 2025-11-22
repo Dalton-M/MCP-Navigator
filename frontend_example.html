@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Stack Composer - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .api-config {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .api-config label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2d3748;
+        }
+        
+        .api-config input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2d3748;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 12px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #2d3748;
+        }
+        
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .results {
+            margin-top: 30px;
+            background: #f7fafc;
+            border-radius: 8px;
+            padding: 24px;
+        }
+        
+        .results h2 {
+            color: #2d3748;
+            margin-bottom: 16px;
+            font-size: 20px;
+        }
+        
+        .mcp-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .mcp-card h3 {
+            color: #667eea;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .score-badge {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        
+        .mcp-card p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        
+        .capabilities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .capability-tag {
+            background: #edf2f7;
+            color: #2d3748;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 12px;
+        }
+        
+        .code-block pre {
+            margin: 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .error {
+            background: #fff5f5;
+            border: 2px solid #fc8181;
+            color: #c53030;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+        
+        .success {
+            background: #f0fff4;
+            border: 2px solid #68d391;
+            color: #22543d;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 MCP Stack Composer</h1>
+            <p>AI-powered MCP orchestration from natural language</p>
+        </div>
+        
+        <div class="content">
+            <!-- API Configuration -->
+            <div class="api-config">
+                <label for="apiUrl">E2B API URL:</label>
+                <input 
+                    type="text" 
+                    id="apiUrl" 
+                    value="http://localhost:8000"
+                    placeholder="https://YOUR_SANDBOX_ID-8000.e2b.dev"
+                >
+                <p style="margin-top: 8px; color: #718096; font-size: 13px;">
+                    💡 Replace with your E2B sandbox URL after deployment
+                </p>
+            </div>
+            
+            <!-- Input Form -->
+            <div class="form-group">
+                <label for="description">Describe your agent requirements:</label>
+                <textarea 
+                    id="description" 
+                    rows="4" 
+                    placeholder="Example: I want an agent that reads GitHub issues, searches the web for similar solutions, and posts a daily summary to Slack."
+                ></textarea>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn-primary" onclick="composeAgent()">
+                    <span id="btnText">Compose Agent Stack</span>
+                </button>
+                <button class="btn-secondary" onclick="clearResults()">Clear</button>
+            </div>
+            
+            <!-- Loading State -->
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Analyzing requirements and composing MCP stack...</p>
+            </div>
+            
+            <!-- Results -->
+            <div id="results" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        async function composeAgent() {
+            const apiUrl = document.getElementById('apiUrl').value.trim();
+            const description = document.getElementById('description').value.trim();
+            
+            if (!description) {
+                alert('Please enter a description of your agent requirements.');
+                return;
+            }
+            
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('btnText').textContent = 'Composing...';
+            document.querySelector('.btn-primary').disabled = true;
+            
+            try {
+                const response = await fetch(`${apiUrl}/api/v1/compose`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        description: description,
+                        top_k: 3
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                displayResults(data);
+                
+            } catch (error) {
+                displayError(error.message);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('btnText').textContent = 'Compose Agent Stack';
+                document.querySelector('.btn-primary').disabled = false;
+            }
+        }
+        
+        function displayResults(data) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.style.display = 'block';
+            
+            let html = '<div class="success">✅ Agent stack composed successfully!</div>';
+            
+            // Capabilities
+            html += '<div class="results">';
+            html += '<h2>🎯 Identified Capabilities</h2>';
+            html += '<div class="capabilities">';
+            data.capabilities.capabilities.forEach(cap => {
+                html += `<span class="capability-tag">${cap}</span>`;
+            });
+            html += '</div>';
+            html += `<p style="margin-top: 12px; color: #718096;">Confidence: ${(data.capabilities.confidence * 100).toFixed(0)}%</p>`;
+            html += '</div>';
+            
+            // Recommended MCPs
+            html += '<div class="results">';
+            html += '<h2>🔧 Recommended MCP Servers</h2>';
+            data.recommended_mcps.forEach((mcp, index) => {
+                html += `
+                    <div class="mcp-card">
+                        <h3>
+                            ${index + 1}. ${mcp.display_name}
+                            <span class="score-badge">Score: ${mcp.score.toFixed(1)}</span>
+                        </h3>
+                        <p>${mcp.description}</p>
+                        <div style="margin-top: 8px; font-size: 13px; color: #718096;">
+                            <strong>Docker:</strong> ${mcp.docker_image}<br>
+                            ${mcp.exact_matches.length > 0 ? `<strong>Exact matches:</strong> ${mcp.exact_matches.join(', ')}<br>` : ''}
+                            ${mcp.env_vars.length > 0 ? `<strong>Required env:</strong> ${mcp.env_vars.join(', ')}` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            
+            // Generated Code
+            html += '<div class="results">';
+            html += '<h2>💻 Generated Setup & Code</h2>';
+            html += '<div class="code-block"><pre>' + escapeHtml(data.code_snippet.markdown) + '</pre></div>';
+            html += '</div>';
+            
+            // Demo Call Result
+            if (data.demo_call && data.demo_call.success) {
+                html += '<div class="results">';
+                html += '<h2>🎬 Live Demo Call</h2>';
+                html += `<p><strong>MCP:</strong> ${data.demo_call.mcp_id} | <strong>Tool:</strong> ${data.demo_call.tool}</p>`;
+                html += '<div class="code-block"><pre>' + JSON.stringify(data.demo_call.result, null, 2) + '</pre></div>';
+                html += '</div>';
+            }
+            
+            resultsDiv.innerHTML = html;
+        }
+        
+        function displayError(message) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.style.display = 'block';
+            resultsDiv.innerHTML = `
+                <div class="error">
+                    <strong>❌ Error:</strong> ${escapeHtml(message)}
+                    <p style="margin-top: 8px;">Please check:</p>
+                    <ul style="margin-left: 20px; margin-top: 4px;">
+                        <li>API URL is correct</li>
+                        <li>API server is running</li>
+                        <li>CORS is configured properly</li>
+                        <li>Network connection is stable</li>
+                    </ul>
+                </div>
+            `;
+        }
+        
+        function clearResults() {
+            document.getElementById('description').value = '';
+            document.getElementById('results').style.display = 'none';
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
+
