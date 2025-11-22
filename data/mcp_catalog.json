@@ -1,0 +1,210 @@
+{
+  "github": {
+    "mcp_id": "github",
+    "display_name": "GitHub Official MCP",
+    "description": "Official GitHub MCP Server. Provides seamless integration with GitHub APIs, enabling advanced automation and interaction capabilities for managing repositories, issues, pull requests, and more.",
+    "capabilities": [
+      "code_hosting.read_issues",
+      "code_hosting.read_repos",
+      "code_hosting.create_issue",
+      "code_hosting.manage_pr",
+      "code_hosting.search_code"
+    ],
+    "env_vars": ["GITHUB_TOKEN"],
+    "docker_image": "mcp/github",
+    "example_tools": [
+      "list_issues",
+      "get_repo",
+      "create_issue",
+      "search_repositories",
+      "get_pull_request"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/github"
+  },
+  "brave-search": {
+    "mcp_id": "brave-search",
+    "display_name": "Brave Search MCP",
+    "description": "Search the Web for pages, images, news, videos, and more using the Brave Search API. Provides privacy-focused web search capabilities.",
+    "capabilities": [
+      "web_search",
+      "web_discovery",
+      "search.images",
+      "search.news"
+    ],
+    "env_vars": ["BRAVE_API_KEY"],
+    "docker_image": "mcp/brave",
+    "example_tools": [
+      "search",
+      "search_images",
+      "search_news",
+      "get_webpage_summary"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/brave-search"
+  },
+  "stripe": {
+    "mcp_id": "stripe",
+    "display_name": "Stripe MCP",
+    "description": "Interact with Stripe services over the Stripe API. Handle payments, subscriptions, invoices, and customer management.",
+    "capabilities": [
+      "payment.create_invoice",
+      "payment.list_subscriptions",
+      "payment.process_payment",
+      "payment.manage_customers"
+    ],
+    "env_vars": ["STRIPE_API_KEY"],
+    "docker_image": "mcp/stripe",
+    "example_tools": [
+      "create_payment_intent",
+      "list_customers",
+      "create_subscription",
+      "list_invoices",
+      "create_coupon"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/stripe"
+  },
+  "mongodb": {
+    "mcp_id": "mongodb",
+    "display_name": "MongoDB MCP",
+    "description": "A Model Context Protocol server to connect to MongoDB databases and MongoDB Atlas Clusters. Perform database operations through natural language.",
+    "capabilities": [
+      "database.read",
+      "database.write",
+      "database.query",
+      "database.aggregate"
+    ],
+    "env_vars": ["MONGODB_URI"],
+    "docker_image": "mcp/mongodb",
+    "example_tools": [
+      "find_documents",
+      "insert_document",
+      "update_document",
+      "aggregate",
+      "create_collection"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/mongodb"
+  },
+  "notion": {
+    "mcp_id": "notion",
+    "display_name": "Notion Official MCP",
+    "description": "Official Notion MCP Server. Manage your Notion workspace, create pages, databases, and collaborate on documents.",
+    "capabilities": [
+      "productivity.notes",
+      "productivity.workspace",
+      "productivity.database",
+      "collaboration.documents"
+    ],
+    "env_vars": ["NOTION_API_KEY"],
+    "docker_image": "mcp/notion",
+    "example_tools": [
+      "create_page",
+      "search_pages",
+      "create_database",
+      "query_database",
+      "update_page"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/notion"
+  },
+  "elasticsearch": {
+    "mcp_id": "elasticsearch",
+    "display_name": "Elasticsearch MCP",
+    "description": "Interact with your Elasticsearch indices through natural language conversations. Perform full-text search, aggregations, and index management.",
+    "capabilities": [
+      "search.full_text",
+      "database.query",
+      "search.analytics",
+      "database.index_management"
+    ],
+    "env_vars": ["ELASTICSEARCH_URL", "ELASTICSEARCH_API_KEY"],
+    "docker_image": "mcp/elasticsearch",
+    "example_tools": [
+      "search",
+      "aggregate",
+      "create_index",
+      "bulk_insert",
+      "get_cluster_health"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/elasticsearch"
+  },
+  "playwright": {
+    "mcp_id": "playwright",
+    "display_name": "Playwright MCP",
+    "description": "Microsoft's Playwright MCP server for browser automation and end-to-end testing. Automate web interactions across Chrome, Firefox, and Safari.",
+    "capabilities": [
+      "browser.automation",
+      "testing.e2e",
+      "web.scraping",
+      "browser.screenshot"
+    ],
+    "env_vars": [],
+    "docker_image": "mcp/playwright",
+    "example_tools": [
+      "navigate",
+      "click",
+      "fill_form",
+      "screenshot",
+      "extract_text"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/playwright"
+  },
+  "perplexity": {
+    "mcp_id": "perplexity",
+    "display_name": "Perplexity MCP",
+    "description": "Connector for Perplexity API, to enable real-time, web-wide research with AI-powered search and summarization.",
+    "capabilities": [
+      "web_search",
+      "research.academic",
+      "research.synthesis",
+      "web_discovery"
+    ],
+    "env_vars": ["PERPLEXITY_API_KEY"],
+    "docker_image": "mcp/perplexity",
+    "example_tools": [
+      "search",
+      "research_topic",
+      "summarize_sources",
+      "ask_question"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/perplexity"
+  },
+  "grafana": {
+    "mcp_id": "grafana",
+    "display_name": "Grafana MCP",
+    "description": "MCP server for Grafana monitoring and observability platform. Create dashboards, manage alerts, and query metrics.",
+    "capabilities": [
+      "monitoring.metrics",
+      "monitoring.alerts",
+      "observability.dashboard",
+      "monitoring.logs"
+    ],
+    "env_vars": ["GRAFANA_URL", "GRAFANA_API_KEY"],
+    "docker_image": "mcp/grafana",
+    "example_tools": [
+      "create_dashboard",
+      "query_metrics",
+      "create_alert",
+      "search_logs",
+      "create_incident"
+    ],
+    "docs_url": "https://hub.docker.com/mcp/server/grafana"
+  },
+  "slack": {
+    "mcp_id": "slack",
+    "display_name": "Slack Notifications MCP",
+    "description": "Send messages and notifications to Slack channels. Integrate Slack into your agent workflows for team communication.",
+    "capabilities": [
+      "notify.slack",
+      "notify.team_chat",
+      "collaboration.messaging"
+    ],
+    "env_vars": ["SLACK_WEBHOOK_URL", "SLACK_BOT_TOKEN"],
+    "docker_image": "mcp/slack",
+    "example_tools": [
+      "send_message",
+      "post_to_channel",
+      "upload_file",
+      "create_thread"
+    ],
+    "docs_url": "https://api.slack.com/messaging/webhooks"
+  }
+}
+

@@ -1,0 +1,35 @@
+{
+  "mcp_id": "github",
+  "tool": "list_issues",
+  "success": true,
+  "result": [
+    {
+      "number": 1523,
+      "title": "Add support for dark mode in dashboard",
+      "state": "open",
+      "url": "https://github.com/example/repo/issues/1523",
+      "created_at": "2025-11-20T10:30:00Z",
+      "labels": ["enhancement", "ui"],
+      "comments": 8
+    },
+    {
+      "number": 1518,
+      "title": "Bug: API rate limiting not working correctly",
+      "state": "open",
+      "url": "https://github.com/example/repo/issues/1518",
+      "created_at": "2025-11-19T15:45:00Z",
+      "labels": ["bug", "api"],
+      "comments": 3
+    },
+    {
+      "number": 1510,
+      "title": "Feature request: Export data to CSV",
+      "state": "open",
+      "url": "https://github.com/example/repo/issues/1510",
+      "created_at": "2025-11-18T09:20:00Z",
+      "labels": ["enhancement", "data"],
+      "comments": 12
+    }
+  ]
+}
+

@@ -1,0 +1,31 @@
+{
+  "mcp_id": "brave-search",
+  "tool": "search",
+  "success": true,
+  "result": {
+    "query": "GitHub issue summarization agent",
+    "web": {
+      "results": [
+        {
+          "title": "Building AI Agents for GitHub Issue Management",
+          "url": "https://example.com/ai-github-agents",
+          "description": "Learn how to build intelligent agents that can automatically categorize, prioritize, and summarize GitHub issues using natural language processing.",
+          "age": "2 days ago"
+        },
+        {
+          "title": "Automated Issue Tracking with AI | Developer Guide",
+          "url": "https://example.com/automated-issue-tracking",
+          "description": "A comprehensive guide to implementing automated issue tracking systems that use AI to summarize, label, and route issues to the right team members.",
+          "age": "1 week ago"
+        },
+        {
+          "title": "GitHub Actions for Issue Summarization",
+          "url": "https://example.com/github-actions-summarize",
+          "description": "Set up GitHub Actions workflows that automatically generate summaries of new issues using GPT models and post them as comments.",
+          "age": "3 weeks ago"
+        }
+      ]
+    }
+  }
+}
+
